@@ -82,6 +82,8 @@
     .main-nav { display: flex; align-items: center; gap: 23px; }
     .main-nav a { color: #4d586b; font-size: .88rem; font-weight: 700; text-decoration: none; }
     .main-nav a:hover { color: var(--blue-dark); }
+    .header-progress { display: flex; min-width: 90px; align-items: center; gap: 7px; color: #3549c5; font-size: .74rem; font-weight: 800; }
+    .header-progress progress { width: 52px; height: 9px; accent-color: var(--blue); }
     .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 11px; background: var(--white); padding: .55rem .8rem; }
 
     .hero {
@@ -142,25 +144,66 @@
     .progress-card h3 { margin: 0; font-size: 1rem; }
     .progress-card p { margin: 3px 0 0; color: var(--muted); font-size: .83rem; }
     .progress-right { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
-    .progress-count { min-width: 100px; color: var(--blue-dark); font-size: .85rem; font-weight: 800; }
+    .progress-count { min-width: 120px; color: var(--blue-dark); font-size: .85rem; font-weight: 800; }
+    .progress-track { display: flex; min-width: 205px; flex-direction: column; gap: 4px; }
+    .progress-track progress { width: 100%; height: 10px; accent-color: var(--blue); }
+    .progress-track span { color: #58647a; font-size: .72rem; }
     .progress-setting { display: flex; align-items: center; gap: 8px; color: #4e596c; font-size: .82rem; font-weight: 700; }
     .progress-setting input { width: 18px; height: 18px; accent-color: var(--blue); }
-    .privacy-hint { width: 100%; color: #68748a; font-size: .78rem; }
+    .privacy-hint { width: 100%; color: #59667b; font-size: .78rem; }
+    .sound-setting { display: flex; align-items: center; gap: 8px; color: #4e596c; font-size: .82rem; font-weight: 700; }
+    .sound-setting input { width: 18px; height: 18px; accent-color: var(--blue); }
+    .sound-preview { min-height: 38px; padding: .4rem .8rem; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--white); font-size: .78rem; font-weight: 750; }
+    .sound-preview:disabled { cursor: not-allowed; opacity: .55; }
+    .sound-note { color: #59667b; font-size: .75rem; }
 
     .journey-section { background: #f0efe9; }
     .journey-top { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
     .journey-top .section-heading { margin-bottom: 28px; }
+    .journey-legend { display: flex; flex-wrap: wrap; gap: 12px 22px; margin: -7px 0 18px; color: #4f5b6e; font-size: .79rem; }
     .journey-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .module-card { position: relative; min-height: 205px; padding: 18px; border: 1px solid #e4e3de; border-radius: 18px; background: var(--white); }
+    .module-card { position: relative; min-height: 205px; padding: 18px; border: 1px solid #e4e3de; border-radius: 18px; background: var(--white); transition: transform .2s ease, box-shadow .2s ease; }
+    .module-card:hover { box-shadow: 0 12px 28px #17203312; transform: translateY(-2px); }
+    .module-card[aria-current="step"] { border-color: var(--blue); box-shadow: 0 0 0 3px #5267e82b; }
     .module-number { display: inline-grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; background: #edf0ff; color: var(--blue-dark); font-size: .82rem; font-weight: 850; }
+    .module-card[aria-current="step"] .module-number { background: var(--blue); color: var(--white); }
+    .module-card.is-complete .module-number { background: #d7f5e5; color: #125c3c; }
     .module-card h3 { margin: 15px 0 6px; font-size: 1rem; line-height: 1.3; }
     .module-card p { min-height: 46px; margin: 0 0 12px; color: var(--muted); font-size: .8rem; line-height: 1.5; }
-    .module-meta { color: #7a8495; font-size: .73rem; font-weight: 700; }
-    .module-done {
-      margin-top: 11px; padding: 5px 9px; border: 1px solid #e3e6ee;
-      border-radius: 9px; background: #fff; color: #4b5668; font-size: .74rem; font-weight: 750;
+    .module-meta { color: #58647a; font-size: .73rem; font-weight: 700; }
+    .module-open { display: inline-flex; min-height: 40px; align-items: center; gap: .35rem; margin-top: 10px; padding: 5px 8px; border: 1px solid #dfe3ef; border-radius: 9px; background: #fff; color: #3549c5; font-size: .76rem; font-weight: 800; text-decoration: none; }
+    .module-open:hover { border-color: var(--blue); background: #f2f4ff; }
+    .module-complete-label { display: block; min-height: 20px; margin-top: 6px; color: #17613f; font-size: .72rem; font-weight: 750; }
+    .session-detail-section { padding-top: 54px; }
+    .session-detail {
+      padding: clamp(20px, 4vw, 36px); border: 1px solid var(--line);
+      border-radius: 24px; background: var(--white); box-shadow: var(--shadow);
     }
-    .module-done[aria-pressed="true"] { border-color: #a9dec7; background: #e6f8ef; color: #116640; }
+    .session-detail-header { display: flex; align-items: start; justify-content: space-between; gap: 18px; }
+    .session-detail-header h3 { margin: .45rem 0 .4rem; font-size: clamp(1.55rem, 3.5vw, 2.3rem); line-height: 1.12; letter-spacing: -.04em; }
+    .session-detail-header p { margin: 0; color: var(--muted); }
+    .session-time { flex: 0 0 auto; padding: 7px 10px; border-radius: 999px; background: #fff1dd; color: #704317; font-size: .78rem; font-weight: 800; }
+    .session-detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 23px; }
+    .session-block { padding: 18px; border: 1px solid #e6e8ed; border-radius: 15px; background: #fbfcfe; }
+    .session-block h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-size: .9rem; }
+    .session-block h4 span { display: inline-grid; width: 25px; height: 25px; place-items: center; border-radius: 8px; background: #e9edff; color: #3549c5; font-size: .75rem; }
+    .session-block p { margin: 0; color: #4e596d; font-size: .86rem; }
+    .session-objective { border-color: #cfecdc; background: #effaf4; }
+    .session-practice { border-color: #dce1ff; background: #f4f5ff; }
+    .session-answer-list { display: grid; gap: 8px; margin-top: 12px; }
+    .session-answer { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #d9deeb; border-radius: 10px; background: var(--white); color: #354055; text-align: left; font-size: .83rem; }
+    .session-answer:hover { border-color: #8797f2; background: #f7f8ff; }
+    .session-answer[aria-pressed="true"] { border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); }
+    .session-answer[aria-pressed="true"][data-correct="true"] { border-color: #18764d; background: #e8f7ef; }
+    .session-answer[aria-pressed="true"][data-correct="false"] { border-color: #9c4a31; background: #fff1eb; }
+    .session-feedback { min-height: 24px; margin-top: 10px !important; color: #45536b !important; font-weight: 750; }
+    .session-project { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 17px 19px; border: 1px solid #e3d8fb; border-radius: 15px; background: #f7f2ff; }
+    .session-project h4 { margin: 0 0 5px; font-size: .92rem; }
+    .session-project p { margin: 0; color: #5a5470; font-size: .82rem; }
+    .session-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 17px; border-top: 1px solid var(--line); }
+    .session-controls .button { min-height: 44px; }
+    .session-position { color: #536077; font-size: .82rem; font-weight: 750; }
+    .session-complete[aria-pressed="true"] { border-color: #9fdbbd; background: #e8f7ef; color: #125c3c; }
 
     .lesson-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 28px; align-items: stretch; }
     .lesson-intro { padding: 30px; border-radius: var(--radius); background: var(--navy); color: var(--white); }
@@ -187,7 +230,7 @@
     .sequence { min-height: 47px; margin: 12px 0; padding: 10px 12px; border: 1px dashed #cbd1dc; border-radius: 11px; color: #526074; background: #fbfcfe; font: .77rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
     .lab-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
     .lab-feedback { min-height: 26px; margin: 12px 0 0; text-align: center; color: var(--blue-dark); font-size: .83rem; font-weight: 700; }
-    .lab-hint { margin-top: 12px; text-align: center; color: #788294; font-size: .75rem; }
+    .lab-hint { margin-top: 12px; text-align: center; color: #59667b; font-size: .75rem; }
     .quiz-section { padding-top: 0; }
     .quiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .quiz-card { padding: 19px; border: 1px solid var(--line); border-radius: 17px; background: var(--white); }
@@ -236,6 +279,9 @@
       .container { width: min(100% - 30px, 560px); }
       .section { padding: 62px 0; }
       .header-inner { min-height: 66px; }
+      .header-inner { gap: 9px; }
+      .header-progress { min-width: 71px; gap: 4px; font-size: .7rem; }
+      .header-progress progress { width: 29px; }
       .menu-toggle { display: inline-flex; align-items: center; gap: 7px; }
       .main-nav {
         position: absolute; top: 65px; right: 15px; left: 15px; display: none;
@@ -263,10 +309,14 @@
       .offline-card { grid-template-columns: 1fr; padding: 22px; }
       .progress-card { align-items: start; flex-direction: column; }
       .progress-right { align-items: start; flex-direction: column; }
+      .session-detail-grid { grid-template-columns: 1fr; }
+      .session-project { align-items: start; flex-direction: column; }
+      .session-detail-header { flex-direction: column; }
       .footer-inner { flex-direction: column; gap: 12px; }
     }
     @media (max-width: 390px) {
       .journey-list { grid-template-columns: 1fr; }
+      .header-progress progress { display: none; }
       .module-card { min-height: 0; }
       .module-card p { min-height: 0; }
       .lab-head { flex-direction: column; }
@@ -284,6 +334,10 @@
         <span class="brand-mark" aria-hidden="true">K</span>
         <span>Ruang KKA<small>Belajar bareng untuk SMA</small></span>
       </a>
+      <div class="header-progress">
+        <progress id="header-progress" max="16" value="0" aria-label="Progres belajar dari 16 pertemuan"></progress>
+        <span id="header-progress-label" role="status" aria-live="polite" aria-atomic="true">0/16 sesi</span>
+      </div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigasi">
         <span aria-hidden="true">☰</span><span>Menu</span>
       </button>
@@ -376,9 +430,16 @@
           <p id="progress-summary">Progres hanya terlihat di halaman ini selama kamu membukanya.</p>
         </div>
         <div class="progress-right">
-          <span class="progress-count" id="progress-count" aria-live="polite">0 selesai</span>
+          <span class="progress-count" id="progress-count">0 dari 16 sesi selesai</span>
+          <div class="progress-track">
+            <progress id="journey-progress" max="16" value="0" aria-label="Progres 16 sesi"></progress>
+            <span id="journey-progress-label">0 dari 16 pertemuan selesai</span>
+          </div>
           <label class="progress-setting"><input id="save-progress" type="checkbox"> Simpan progres di perangkat ini</label>
           <button class="button button-subtle" id="clear-progress" type="button">Hapus progres</button>
+          <label class="sound-setting"><input id="sound-enabled" type="checkbox"> Efek bunyi singkat</label>
+          <button class="sound-preview" id="sound-preview" type="button" disabled>Coba bunyi</button>
+          <span class="sound-note" id="sound-note">Bunyi mati. Aktifkan jika kamu ingin mendengarnya; semua aksi tetap punya umpan balik teks.</span>
         </div>
         <div class="privacy-hint" id="storage-message">Tidak perlu akun. Jika diaktifkan, progres tersimpan di browser pada perangkat ini saja—tidak dikirim ke mana pun.</div>
       </div>
@@ -394,7 +455,37 @@
           </div>
           <a class="button button-subtle" href="../docs/kka-sma/silabus-dan-pembelajaran.md">Buka rancangan lengkap ↗</a>
         </div>
+        <div class="journey-legend" aria-label="Petunjuk status pertemuan">
+          <span><strong>Belum dicoba:</strong> pilih “Buka materi”.</span>
+          <span><strong>Sedang dipelajari:</strong> tanda “Dipilih” dan bingkai tebal.</span>
+          <span><strong>Selesai:</strong> tanda centang dan teks “Selesai”.</span>
+        </div>
         <div class="journey-list" id="module-list" aria-label="Modul pembelajaran"></div>
+        <section class="session-detail-section" id="detail-pertemuan" aria-labelledby="session-title" tabindex="-1">
+          <article class="session-detail">
+            <div class="session-detail-header">
+              <div><span class="eyebrow" id="session-kicker">Pertemuan 1 dari 16</span><h3 id="session-title" tabindex="-1">Memuat pertemuan...</h3><p id="session-summary"></p></div>
+              <span class="session-time" id="session-time"></span>
+            </div>
+            <div class="session-detail-grid">
+              <section class="session-block session-objective"><h4><span aria-hidden="true">◎</span> Tujuan belajar</h4><p id="session-objective"></p></section>
+              <section class="session-block"><h4><span aria-hidden="true">✦</span> Pahami konsep</h4><p id="session-concept"></p></section>
+              <section class="session-block session-practice"><h4><span aria-hidden="true">↗</span> Coba tantangan</h4><p id="session-activity"></p><div class="session-answer-list" id="session-answers" role="group" aria-label="Pilih pendekatan untuk tantangan"></div><p class="session-feedback" id="session-feedback" aria-live="polite">Pilih pendekatan untuk mendapat petunjuk dan umpan balik.</p></section>
+              <section class="session-block"><h4><span aria-hidden="true">♧</span> Alternatif tanpa perangkat</h4><p id="session-offline"></p></section>
+              <section class="session-block"><h4><span aria-hidden="true">? </span> Refleksi singkat</h4><p id="session-reflection"></p></section>
+              <section class="session-project" id="session-project" hidden>
+                <div><h4>Jejak inovasimu</h4><p id="session-project-prompt"></p></div>
+                <a class="button button-subtle" href="../docs/kka-sma/proyek-asesmen-dan-pustaka.md">Panduan proyek &amp; asesmen ↗</a>
+              </section>
+            </div>
+            <div class="session-controls">
+              <button class="button button-subtle" id="previous-session" type="button">← Pertemuan sebelumnya</button>
+              <span class="session-position" id="session-position">Pertemuan 1 dari 16</span>
+              <button class="button button-primary session-complete" id="complete-session" type="button" aria-pressed="false">Tandai pertemuan selesai</button>
+              <button class="button button-subtle" id="next-session" type="button">Pertemuan berikutnya →</button>
+            </div>
+          </article>
+        </section>
       </div>
     </section>
 
@@ -507,44 +598,421 @@
   <script>
     (() => {
       const modules = [
-        ["Orientasi & instruksi jelas", "Menyusun langkah, menemukan ambiguitas, dan membuat kesepakatan aman.", "15–20 menit mandiri"],
-        ["Berpikir komputasional", "Memecah masalah, mencari pola, dan menentukan informasi penting.", "20 menit mandiri"],
-        ["Variabel & masukan-keluaran", "Menelusuri nilai dan melihat bagaimana program menerima masukan.", "20 menit mandiri"],
-        ["Kondisi & keputusan", "Membuat aturan jika/maka dan mencoba kasus batas.", "20 menit mandiri"],
-        ["Pengulangan", "Mengenali pola langkah yang berulang dan kapan harus berhenti.", "20 menit mandiri"],
-        ["Fungsi & modularitas", "Membagi solusi ke prosedur kecil yang dapat digunakan kembali.", "20 menit mandiri"],
-        ["Data & representasi", "Membaca tabel kecil serta membahas kualitas dan minimisasi data.", "20 menit mandiri"],
-        ["Debugging & tinjauan tengah", "Menelusuri langkah, menemukan kesalahan, lalu memperbaiki.", "25 menit mandiri"],
-        ["Aturan, ML, dan AI generatif", "Membandingkan sistem berdasarkan cara kerja dan keluarannya.", "20 menit mandiri"],
-        ["Bias & generalisasi", "Menguji contoh beragam dan mencatat batas sebuah aturan/model.", "20 menit mandiri"],
-        ["Verifikasi keluaran AI", "Memeriksa klaim dengan kasus uji dan sumber yang bisa ditelusuri.", "20 menit mandiri"],
-        ["Prompting & iterasi", "Membuat instruksi aman, mengecek keluaran, dan memperbaikinya.", "20 menit mandiri"],
-        ["Etika, privasi & dampak", "Mengenali risiko dan memilih alternatif yang lebih aman.", "20 menit mandiri"],
-        ["Capstone: rancang & bangun", "Merancang prototipe kecil yang aman, dengan atau tanpa perangkat.", "Sesi proyek"],
-        ["Capstone: uji & revisi", "Mencoba kasus normal, batas, dan gagal; mendokumentasikan revisi.", "Sesi proyek"],
-        ["Demo & refleksi", "Menjelaskan cara kerja, hasil uji, batas, dan pembelajaran.", "Sesi proyek"]
+        {
+          title: "Orientasi & instruksi jelas",
+          detail: "Kenali kelas KKA dan uji bagaimana kata-kata yang jelas membantu.",
+          time: "15 menit mandiri",
+          objective: "Menulis urutan langkah sederhana, menemukan satu ambiguitas, dan menyebutkan dua kebiasaan aman.",
+          concept: "Algoritma adalah langkah yang terurut dan jelas untuk mencapai tujuan. Komputer menjalankan instruksi, bukan menebak maksud penulis.",
+          activity: "Kamu diminta mengurutkan lima kartu angka. Instruksi mana yang paling bisa diuji?",
+          options: ["Bandingkan dua kartu; tukar jika kartu kiri lebih besar, lalu ulangi sampai berurutan.", "Rapikan semua kartu dengan cara yang terasa benar."],
+          answer: 0,
+          feedback: "Instruksi pertama memberi aturan yang bisa diulangi dan diperiksa. Menentukan urutan naik/turun dan apa yang terjadi saat nilainya sama membuatnya makin jelas.",
+          retry: "Coba pilih instruksi yang menyebut aturan dan langkah yang bisa diulang, bukan hanya hasil yang diinginkan.",
+          offline: "Tulis instruksi mengurutkan kartu. Minta teman mengikuti persis; catat kata yang masih bisa ditafsirkan lebih dari satu cara.",
+          reflection: "Bagian mana dari instruksimu yang mungkin ditafsirkan berbeda oleh orang lain?"
+        },
+        {
+          title: "Berpikir komputasional",
+          detail: "Pecah tantangan menjadi bagian kecil, cari pola, dan sederhanakan.",
+          time: "15 menit mandiri",
+          objective: "Mengurai masalah menjadi submasalah, menemukan pola, dan memilih informasi yang dibutuhkan.",
+          concept: "Dekomposisi memecah masalah. Pengenalan pola mencari kesamaan. Abstraksi menyimpan detail penting dan mengesampingkan yang tidak relevan.",
+          activity: "Rancang petunjuk jalan fiktif dari gerbang ke perpustakaan dengan beberapa belokan.",
+          options: ["Bagi perjalanan menjadi ruas jalan dan persimpangan; catat arah dan jarak perkiraan tiap ruas.", "Catat semua warna baju orang yang kamu lihat sepanjang perjalanan."],
+          answer: 0,
+          feedback: "Bagus. Ruas dan persimpangan membantu membuat rute kecil yang dapat dicek; warna baju tidak dibutuhkan untuk navigasi.",
+          retry: "Pilih cara yang memecah rute dan menyimpan informasi yang benar-benar membantu mencapai tujuan.",
+          offline: "Gambar rute fiktif dengan empat simpang. Beri nama tiap bagian, lalu minta teman menemukan rute dari daftar ruas saja.",
+          reflection: "Informasi apa yang kamu pilih untuk tinggalkan, dan mengapa?"
+        },
+        {
+          title: "Variabel & masukan-keluaran",
+          detail: "Simpan nilai, ubah dengan aturan sederhana, lalu amati hasilnya.",
+          time: "15 menit mandiri",
+          objective: "Menjelaskan peran variabel, masukan, proses, dan keluaran lewat contoh data sintetis.",
+          concept: "Variabel adalah nama untuk nilai yang dapat dipakai dalam langkah berikutnya. Masukan memberi nilai; proses mengolahnya; keluaran menunjukkan hasil.",
+          activity: "Sebuah permainan mulai dengan 3 token. Pemain mendapat 2 token lagi. Apa keluaran jumlah token?",
+          options: ["Simpan `token = 3`, tambah 2, lalu tampilkan 5.", "Ganti nilai awal menjadi 5 tanpa menunjukkan langkahnya."],
+          answer: 0,
+          feedback: "Tepat: nilai awal disimpan, diperbarui, lalu ditampilkan. Nama variabel menjelaskan apa arti angka itu.",
+          retry: "Coba telusuri nilai awal, operasi, dan nilai setelah operasi secara berurutan.",
+          offline: "Pakai kartu bertuliskan `token` dan letakkan 3 benda. Tambah 2, lalu bacakan nilai sebelum dan sesudah.",
+          reflection: "Apa bedanya nilai yang disimpan dengan nama yang kita berikan pada variabel?"
+        },
+        {
+          title: "Kondisi & keputusan",
+          detail: "Pilih cabang aturan dengan jujur, termasuk nilai tepat di batas.",
+          time: "15 menit mandiri",
+          objective: "Menulis keputusan jika/maka/jika tidak dan menguji nilai batas dengan contoh non-pribadi.",
+          concept: "Kondisi memilih tindakan berdasar aturan eksplisit. Menguji nilai di sekitar batas membantu menemukan cabang yang terlewat.",
+          activity: "Permainan fiktif memberi bonus jika poin minimal 10. Berapa hasil untuk poin 10?",
+          options: ["Bonus diberikan, karena 10 memenuhi aturan minimal 10.", "Bonus tidak diberikan; aturan hanya berlaku di atas 10."],
+          answer: 0,
+          feedback: "Benar. Kata “minimal” mencakup nilai 10. Uji juga 9 dan 11 agar kedua sisi batas diperiksa.",
+          retry: "Perhatikan perbedaan “minimal 10” dengan “lebih dari 10”, lalu uji nilai tepat di batas.",
+          offline: "Buat kartu kondisi untuk poin 9, 10, dan 11. Teman memilih cabang aturan dan menjelaskan alasannya.",
+          reflection: "Kasus batas apa yang perlu diuji pada aturan yang kamu buat?"
+        },
+        {
+          title: "Pengulangan",
+          detail: "Temukan langkah berulang dan tentukan kapan proses harus berhenti.",
+          time: "15 menit mandiri",
+          objective: "Menentukan kapan loop mengulang dan kapan kondisinya membuat proses berhenti.",
+          concept: "Loop mengulang langkah untuk beberapa item atau selama kondisi tertentu terpenuhi. Kondisi berhenti mencegah pengulangan tanpa akhir.",
+          activity: "Robot perlu memeriksa empat kotak satu per satu. Instruksi mana yang lebih mudah diubah jika ada kotak kelima?",
+          options: ["Untuk setiap kotak yang tersisa: periksa sekali, lalu lanjut ke kotak berikutnya.", "Periksa kotak pertama, kedua, ketiga, dan keempat dengan empat instruksi salinan."],
+          answer: 0,
+          feedback: "Ya. Aturan “untuk setiap kotak” dapat dipakai pada jumlah kotak berbeda dan jumlah langkahnya jelas.",
+          retry: "Cari instruksi yang menyatakan satu pola dan dapat dipakai kembali tanpa menyalin langkah.",
+          offline: "Buat antrean kartu kotak. Peserta didik mengulang perintah yang sama untuk tiap kartu dan berhenti saat kartu habis.",
+          reflection: "Apa kondisi yang memberitahu loop untuk berhenti?"
+        },
+        {
+          title: "Fungsi & modularitas",
+          detail: "Bungkus langkah menjadi bagian kecil yang punya masukan dan keluaran.",
+          time: "15 menit mandiri",
+          objective: "Menjelaskan bagaimana fungsi bernama mengemas tugas berulang menjadi bagian yang dapat digunakan kembali.",
+          concept: "Fungsi memberi nama pada satu tugas. Parameter menjadi masukan; hasilnya dapat dikembalikan atau ditampilkan. Bagian kecil lebih mudah diuji.",
+          activity: "Kamu membuat program yang menyapa beberapa tokoh fiktif. Bagaimana menghindari menyalin langkah yang sama?",
+          options: ["Buat fungsi `sapa(nama)` dan panggil dengan nama contoh yang berbeda.", "Tulis ulang seluruh kode sapaan dengan nama tetap untuk setiap tokoh."],
+          answer: 0,
+          feedback: "Tepat. Fungsi `sapa` dapat menggunakan masukan nama yang berbeda tanpa menyalin seluruh langkah.",
+          retry: "Pikirkan cara memberi nama pada satu tugas dan mengirim nilai yang dapat berubah sebagai masukan.",
+          offline: "Tulis kartu fungsi “buat salam”: satu kartu nama masuk, satu kalimat salam keluar. Uji dengan dua nama fiktif.",
+          reflection: "Tugas apa yang kamu jadikan fungsi, dan apa masukannya?"
+        },
+        {
+          title: "Data & representasi",
+          detail: "Baca tabel kecil dan tanyakan apakah data itu cukup, perlu, dan aman.",
+          time: "15 menit mandiri",
+          objective: "Membaca ringkasan data sintetis dan menjelaskan kualitas, relevansi, serta minimisasi data.",
+          concept: "Data mewakili pengamatan dalam bentuk yang dapat diolah. Pilihan data memengaruhi kesimpulan; data yang tidak diperlukan sebaiknya tidak dikumpulkan.",
+          activity: "Tabel fiktif memuat cuaca dan jumlah tanaman yang disiram. Informasi mana yang cukup untuk menghitung total siraman?",
+          options: ["Angka siraman pada tabel sintetis.", "Nama lengkap, lokasi rumah, dan foto orang yang menyiram."],
+          answer: 0,
+          feedback: "Benar. Untuk menghitung total, angka siraman sudah cukup; identitas dan foto tidak relevan serta tidak perlu dikumpulkan.",
+          retry: "Pilih data yang langsung membantu menjawab pertanyaan, dengan risiko privasi paling rendah.",
+          offline: "Gambar tabel cuaca fiktif dan jumlah gelas air untuk tanaman. Hitung ringkasan tanpa menambahkan identitas.",
+          reflection: "Data apa yang tidak kamu kumpulkan karena tidak diperlukan?"
+        },
+        {
+          title: "Debugging & tinjauan tengah",
+          detail: "Telusuri nilai, ulangi kasus, lalu perbaiki satu masalah.",
+          time: "20 menit mandiri",
+          objective: "Membandingkan hasil yang diharapkan dengan yang terjadi, menemukan langkah bermasalah, dan menguji ulang.",
+          concept: "Debugging adalah proses teliti: ulangi kasus aman, telusuri nilai/aturan, ubah satu hal, lalu ulangi pengujian.",
+          activity: "Aturan contoh menerima bilangan bulat 0–100 tetapi gagal saat mendapat 101. Langkah uji mana yang membantu menemukan masalah rentang?",
+          options: ["Bandingkan 100, 101, dan 0; catat keluaran yang diharapkan dan aktual.", "Ubah banyak baris sekaligus dan lihat apakah program terlihat berbeda."],
+          answer: 0,
+          feedback: "Bagus. Nilai batas dan nilai tepat di luar rentang menunjukkan apakah validasi batas bekerja; mengubah satu hal menjaga penyebab tetap bisa dilacak.",
+          retry: "Pilih pengujian yang membandingkan hasil nyata dan yang diharapkan menggunakan nilai dekat batas.",
+          offline: "Gunakan tabel jejak untuk tiga masukan. Tulis nilai variabel dan cabang yang dilalui, lalu perbaiki satu kartu aturan.",
+          reflection: "Kasus uji apa yang paling cepat membantu menemukan kesalahanmu?"
+        },
+        {
+          title: "Aturan, ML, dan AI generatif",
+          detail: "Bedakan program beraturan, sistem yang belajar dari contoh, dan AI generatif.",
+          time: "15 menit mandiri",
+          objective: "Membedakan sistem deterministik berbasis aturan, machine learning, dan AI generatif dari cara kerjanya.",
+          concept: "Program aturan mengikuti instruksi yang ditulis. ML menemukan pola pada data contoh. AI generatif menghasilkan konten; ketiganya tetap punya batas.",
+          activity: "Sistem memilih label berdasarkan contoh berlabel saat latihan, bukan aturan if/else yang ditulis untuk tiap item. Ini contoh apa?",
+          options: ["Machine learning yang belajar pola dari contoh.", "AI generatif yang memahami semua hal seperti manusia."],
+          answer: 0,
+          feedback: "Benar. ML mempelajari pola dari contoh latihan; itu tidak berarti ia memahami dunia atau selalu benar.",
+          retry: "Ingat perbedaan aturan eksplisit dengan pola yang dipelajari dari data contoh.",
+          offline: "Kelompokkan kartu skenario menjadi aturan, ML, atau generatif. Tulis bukti cara kerja dan satu batas untuk tiap kartu.",
+          reflection: "Contoh apa yang membuatmu membedakan ML dari program berbasis aturan?"
+        },
+        {
+          title: "Bias & generalisasi",
+          detail: "Periksa siapa atau apa yang mungkin tidak terwakili dalam contoh.",
+          time: "15 menit mandiri",
+          objective: "Menguji apakah contoh latihan mewakili variasi kasus yang akan ditemui dan mengidentifikasi kegagalan generalisasi.",
+          concept: "Sistem bisa berkinerja baik pada contoh yang mirip dengan data latihan namun keliru pada situasi berbeda. Data timpang dapat menghasilkan dampak yang tidak adil.",
+          activity: "Aturan mainan mengenali buah hanya dari warna. Kasus apa yang penting untuk diuji?",
+          options: ["Buah matang dan mentah dengan warna bervariasi; catat contoh yang keliru.", "Uji satu buah dengan warna sama berulang kali dan simpulkan semua kasus aman."],
+          answer: 0,
+          feedback: "Ya. Contoh yang beragam dapat mengungkap keterbatasan; satu contoh berulang tidak membuktikan aturan berlaku untuk semua buah.",
+          retry: "Pilih uji dengan variasi yang mungkin menantang asumsi aturan, bukan sekadar mengulang contoh mudah.",
+          offline: "Buat kartu buah fiktif dengan warna dan kondisi berbeda. Uji aturan warna dan catat kasus yang gagal.",
+          reflection: "Siapa atau apa yang mungkin terlewat dari kumpulan contoh yang kamu pilih?"
+        },
+        {
+          title: "Verifikasi keluaran AI",
+          detail: "Periksa klaim dan contoh sebelum menggunakannya.",
+          time: "15 menit mandiri",
+          objective: "Memeriksa klaim keluaran terhadap sumber yang dapat ditelusuri atau kasus uji, serta menyebutkan ketidakpastian.",
+          concept: "AI dapat menghasilkan jawaban meyakinkan yang keliru, bias, atau sumber yang tidak ada. Keluaran adalah saran untuk diperiksa, bukan bukti.",
+          activity: "Sebuah jawaban AI memberi fakta dan satu rujukan. Apa langkah aman sebelum mengutipnya?",
+          options: ["Buka dan cocokkan rujukan, lalu verifikasi klaim penting dengan sumber tepercaya lain.", "Percaya karena jawabannya rinci dan rujukannya terdengar meyakinkan."],
+          answer: 0,
+          feedback: "Tepat. Rujukan perlu benar-benar diperiksa dan klaim penting dibandingkan sumber; jangan masukkan data pribadi saat meminta bantuan.",
+          retry: "Pilih langkah yang memeriksa sumber dan klaim, bukan penampilan jawaban.",
+          offline: "Bandingkan dua kartu klaim fiktif dengan buku atau sumber cetak yang tersedia. Tandai yang belum dapat dipastikan.",
+          reflection: "Apa yang akan kamu katakan bila sumbernya tidak dapat diverifikasi?"
+        },
+        {
+          title: "Prompting & iterasi",
+          detail: "Rancang instruksi aman, kriteria hasil, dan cara memeriksanya.",
+          time: "15 menit mandiri",
+          objective: "Menyusun prompt yang menyatakan tugas, konteks aman, batas, dan kriteria keluaran tanpa data pribadi.",
+          concept: "Instruksi yang spesifik dapat memperjelas keluaran, tetapi tidak menjamin kebenaran. Iterasi adalah membandingkan hasil dengan kriteria dan memperbaiki permintaan.",
+          activity: "Kamu ingin membuat ringkasan konsep loop untuk teman sekelas tanpa memakai layanan AI. Bagian apa yang membantu prompt atau brief?",
+          options: ["Sebutkan tujuan, audiens umum, batas panjang, contoh aman, dan cara memeriksa hasil.", "Tambahkan nama lengkap teman dan minta jawaban apa pun yang terdengar pintar."],
+          answer: 0,
+          feedback: "Bagus. Tujuan, audiens, batas, contoh aman, dan pemeriksaan membuat brief jelas tanpa membagikan identitas.",
+          retry: "Pilih instruksi dengan tujuan dan kriteria jelas yang tidak menyertakan data pribadi.",
+          offline: "Tulis dua versi brief di kertas. Bandingkan apakah orang lain dapat mengenali keluaran yang diminta dan cara memeriksanya.",
+          reflection: "Kriteria apa yang akan kamu pakai untuk memutuskan bahwa hasilnya berguna?",
+          project: "AI tidak wajib. Rancang brief aman untuk alat atau teman yang membantu membuat ringkasan; tulis cara memeriksa hasil dan kapan memilih tanpa AI."
+        },
+        {
+          title: "Etika, privasi & dampak",
+          detail: "Periksa risiko, minimalkan data, dan pilih alternatif aman.",
+          time: "15 menit mandiri",
+          objective: "Mengidentifikasi data pribadi dan risiko pada skenario, lalu mengusulkan alternatif aman yang tetap berguna.",
+          concept: "Teknologi dapat berdampak berbeda pada orang yang berbeda. Persetujuan, privasi, keamanan, transparansi, dan alternatif non-AI perlu dipikirkan sejak awal.",
+          activity: "Tim ingin membuat kuis belajar dari contoh sintetis. Data apa yang digunakan?",
+          options: ["Contoh fiktif dan aturan permainan yang tidak menilai orang.", "Foto, nilai, dan nama teman tanpa izin supaya kuis terasa personal."],
+          answer: 0,
+          feedback: "Benar. Contoh sintetis cukup untuk latihan; hindari data orang dan gunakan alat digital hanya dengan persetujuan sekolah.",
+          retry: "Pilih cara yang mencapai tujuan belajar tanpa mengumpulkan atau membagikan data pribadi.",
+          offline: "Nilai skenario pada kertas: data apa yang dipakai, siapa terdampak, apa risikonya, dan bagaimana membuat versi yang lebih aman.",
+          reflection: "Jika penggunaan alat terasa tidak aman atau tidak jelas, kepada siapa kamu bertanya dan apa alternatifnya?"
+        },
+        {
+          title: "Capstone: rancang & bangun",
+          detail: "Pilih masalah terbatas lalu buat prototipe kecil.",
+          time: "20 menit rancangan",
+          objective: "Merumuskan masalah yang aman dan terbatas, kriteria keberhasilan yang dapat diuji, serta prototipe awal.",
+          concept: "Prototipe membantu belajar; ia belum tentu siap untuk situasi nyata. Mulai dari tujuan, pengguna yang dibayangkan, batas, dan contoh aman.",
+          activity: "Kelompok ingin membantu teman menyortir buku fiktif berdasarkan kategori. Apa rancangan awal yang paling terukur?",
+          options: ["Buat aturan kategori, gunakan 5 judul fiktif, lalu uji apakah tiap kategori sesuai.", "Kumpulkan riwayat membaca siswa dan minta sistem menyarankan masa depan mereka."],
+          answer: 0,
+          feedback: "Tepat. Contoh sintetis, kriteria terukur, dan tujuan terbatas menjaga proyek mudah diuji dan tidak menilai orang.",
+          retry: "Pilih rancangan dengan lingkup aman, kriteria yang bisa diamati, dan tanpa profil individu.",
+          offline: "Gunakan kartu judul buku fiktif. Kelompokkan dengan aturan yang ditulis dan buat diagram alurnya.",
+          reflection: "Siapa pengguna yang dibayangkan, dan hal apa yang sengaja tidak dilakukan prototipemu?",
+          project: "Buat brief satu halaman: masalah, pengguna yang dibayangkan, kriteria, diagram, data sintetis, risiko, alternatif non-AI, dan cara uji."
+        },
+        {
+          title: "Capstone: uji & revisi",
+          detail: "Uji skenario normal dan batas, lalu revisi satu hal.",
+          time: "20 menit rancangan",
+          objective: "Menguji prototipe pada skenario normal, batas, dan gagal; mencatat keluaran aktual dan revisi.",
+          concept: "Pengujian membandingkan hasil nyata dengan kriteria. Perubahan kecil yang diikuti uji ulang membuat alasan revisi dapat ditelusuri.",
+          activity: "Aturan pengelompokan buku fiktif bekerja pada contoh umum. Uji apa berikutnya?",
+          options: ["Coba judul ambigu, masukan kosong, atau kategori yang belum ada; catat hasil dan revisi satu aturan.", "Uji contoh yang sama lagi dan nyatakan prototipe sempurna."],
+          answer: 0,
+          feedback: "Bagus. Kasus batas dan gagal membantu melihat keterbatasan. Catat perubahan dan uji ulang kasus yang sama.",
+          retry: "Pilih pengujian yang dapat mengungkap batas sistem dan menghasilkan perbaikan yang dapat dicatat.",
+          offline: "Minta kelompok lain mencoba kartu kasus uji tanpa diberi tahu jawaban. Catat yang membingungkan lalu revisi aturan.",
+          reflection: "Apa yang berubah setelah revisi, dan kasus mana yang akan kamu uji ulang?",
+          project: "Simpan tabel kasus uji (masukan, hasil yang diharapkan, hasil aktual), satu revisi, hasil uji ulang, dan risiko yang tersisa."
+        },
+        {
+          title: "Demo, umpan balik & refleksi",
+          detail: "Ceritakan cara kerja, bukti uji, batas, dan dampak idemu.",
+          time: "15 menit persiapan",
+          objective: "Menjelaskan prototipe, bukti uji, batasan, kontribusi, sumber, dan penggunaan AI secara jujur.",
+          concept: "Presentasi yang bertanggung jawab menunjukkan apa yang berhasil, apa yang belum, bukti yang mendukung klaim, dan pilihan desain aman.",
+          activity: "Kamu mendemonstrasikan alat bantu pengelompokan. Apa yang perlu disampaikan setelah cara kerjanya?",
+          options: ["Tunjukkan satu kasus yang berhasil, satu batas/kegagalan, bukti revisi, dan sumber atau penggunaan AI.", "Klaim alat selalu benar dan sembunyikan contoh yang gagal."],
+          answer: 0,
+          feedback: "Tepat. Bukti, batas, dan atribusi yang jujur membuat orang lain bisa menilai serta mengembangkan idemu.",
+          retry: "Pilih presentasi yang menunjukkan bukan hanya keberhasilan, tetapi juga bukti dan batas yang diketahui.",
+          offline: "Buat poster atau cerita lisan 2 menit: masalah, cara kerja, satu uji, satu batas, satu perbaikan, dan langkah berikut.",
+          reflection: "Apa dampak baik yang ingin kamu dorong sebagai inovator, dan apa yang akan kamu jaga?",
+          project: "Ajak pendengar memberi satu pertanyaan dan satu saran. Tulis satu langkah berikut yang aman, bermanfaat, dan dapat diuji."
+        }
       ];
-      const storageKey = "ruang-kka-sma-progress-v1";
-      const progress = { lesson: false, modules: new Set(), quiz: new Set() };
+      const storageKey = "ruang-kka-sma-progress-v2";
+      const progress = { lesson: false, sessions: new Set(), quiz: new Set() };
       const board = document.querySelector("#robot-board");
       const feedback = document.querySelector("#robot-feedback");
       const sequenceOutput = document.querySelector("#command-sequence");
       const saveToggle = document.querySelector("#save-progress");
       const storageMessage = document.querySelector("#storage-message");
+      const soundToggle = document.querySelector("#sound-enabled");
+      const soundButton = document.querySelector("#sound-preview");
+      const soundNote = document.querySelector("#sound-note");
       const commands = [];
       const obstacles = new Set(["1,1", "2,2"]);
       let robot = { row: 3, col: 0, direction: 0 };
       let isRunning = false;
       const directions = [[-1, 0], [0, 1], [1, 0], [0, -1]];
-      const arrows = ["↑", "→", "↓", "←"];
 
       const moduleList = document.querySelector("#module-list");
-      modules.forEach(([title, detail, time], index) => {
+      const sessionAnswers = document.querySelector("#session-answers");
+      let activeSession = 1;
+      let audioContext;
+
+      modules.forEach((module, index) => {
         const card = document.createElement("article");
         card.className = "module-card";
-        card.innerHTML = `<span class="module-number">${String(index + 1).padStart(2, "0")}</span><h3>${title}</h3><p>${detail}</p><div class="module-meta">Sesi kelas 90 menit · ${time}</div><button class="module-done" type="button" data-module="${index + 1}" aria-pressed="false">Tandai selesai</button>`;
+        card.dataset.session = String(index + 1);
+        const number = document.createElement("span");
+        number.className = "module-number";
+        number.textContent = String(index + 1).padStart(2, "0");
+        const heading = document.createElement("h3");
+        heading.textContent = module.title;
+        const summary = document.createElement("p");
+        summary.textContent = module.detail;
+        const time = document.createElement("div");
+        time.className = "module-meta";
+        time.textContent = `Sesi kelas 90 menit · ${module.time}`;
+        const open = document.createElement("a");
+        open.className = "module-open";
+        open.href = "#detail-pertemuan";
+        open.dataset.session = String(index + 1);
+        open.textContent = `Buka materi sesi ${index + 1} →`;
+        const done = document.createElement("span");
+        done.className = "module-complete-label";
+        done.setAttribute("aria-live", "polite");
+        card.append(number, heading, summary, time, open, done);
         moduleList.append(card);
       });
+
+      function updateProgress() {
+        const completeCount = progress.sessions.size;
+        const progressText = `${completeCount} dari ${modules.length} sesi selesai`;
+        document.querySelector("#progress-count").textContent = progressText;
+        document.querySelector("#journey-progress").value = completeCount;
+        document.querySelector("#journey-progress").setAttribute("aria-valuetext", progressText);
+        document.querySelector("#journey-progress-label").textContent = progressText;
+        document.querySelector("#header-progress").value = completeCount;
+        document.querySelector("#header-progress").setAttribute("aria-valuetext", progressText);
+        document.querySelector("#header-progress-label").textContent = `${completeCount}/${modules.length}`;
+        document.querySelector("#header-progress-label").setAttribute("aria-label", `Progres belajar: ${progressText}`);
+        document.querySelectorAll(".module-card").forEach(card => {
+          const id = Number(card.dataset.session);
+          const complete = progress.sessions.has(id);
+          if (id === activeSession) card.setAttribute("aria-current", "step");
+          else card.removeAttribute("aria-current");
+          card.classList.toggle("is-complete", complete);
+          card.querySelector(".module-complete-label").textContent = complete ? "✓ Sesi selesai" : "";
+          const link = card.querySelector(".module-open");
+          link.textContent = `Buka materi sesi ${id}${id === activeSession ? " · Dipilih" : ""} →`;
+        });
+        const completeButton = document.querySelector("#complete-session");
+        const alreadyComplete = progress.sessions.has(activeSession);
+        completeButton.setAttribute("aria-pressed", String(alreadyComplete));
+        completeButton.textContent = alreadyComplete ? "✓ Sesi selesai · batalkan" : "Tandai pertemuan selesai";
+        completeButton.disabled = !alreadyComplete && !sessionAnswers.querySelector('[data-correct="true"][aria-pressed="true"]');
+        document.querySelector("#previous-session").disabled = activeSession === 1;
+        document.querySelector("#next-session").disabled = activeSession === modules.length;
+      }
+
+      function showSessionFeedback(correct, text) {
+        const status = document.querySelector("#session-feedback");
+        status.textContent = text;
+        status.dataset.state = correct ? "benar" : "coba-lagi";
+        playFeedbackSound(correct);
+      }
+
+      function renderSession(id) {
+        activeSession = Math.max(1, Math.min(modules.length, id));
+        const module = modules[activeSession - 1];
+        document.querySelector("#session-kicker").textContent = `Pertemuan ${activeSession} dari ${modules.length}`;
+        document.querySelector("#session-title").textContent = module.title;
+        document.querySelector("#session-summary").textContent = module.detail;
+        document.querySelector("#session-time").textContent = `Waktu mandiri: ${module.time.replace(" mandiri", "").replace(" rancangan", "")}`;
+        document.querySelector("#session-objective").textContent = module.objective;
+        document.querySelector("#session-concept").textContent = module.concept;
+        document.querySelector("#session-activity").textContent = module.activity;
+        document.querySelector("#session-offline").textContent = module.offline;
+        document.querySelector("#session-reflection").textContent = module.reflection;
+        document.querySelector("#session-position").textContent = `Pertemuan ${activeSession} dari ${modules.length}`;
+        const projectPanel = document.querySelector("#session-project");
+        projectPanel.hidden = !module.project;
+        if (module.project) document.querySelector("#session-project-prompt").textContent = module.project;
+        sessionAnswers.replaceChildren();
+        module.options.forEach((option, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "session-answer";
+          button.textContent = option;
+          button.dataset.correct = String(index === module.answer);
+          button.setAttribute("aria-pressed", "false");
+          button.addEventListener("click", () => {
+            sessionAnswers.querySelectorAll("button").forEach(answer => answer.setAttribute("aria-pressed", "false"));
+            button.setAttribute("aria-pressed", "true");
+            const correct = index === module.answer;
+            showSessionFeedback(correct, correct ? module.feedback : module.retry);
+            updateProgress();
+          });
+          sessionAnswers.append(button);
+        });
+        document.querySelector("#session-feedback").textContent = "Pilih pendekatan untuk mendapat petunjuk dan umpan balik.";
+        document.querySelector("#session-feedback").dataset.state = "";
+        updateProgress();
+      }
+
+      function openSession(id, moveFocus) {
+        renderSession(id);
+        const section = document.querySelector("#detail-pertemuan");
+        if (moveFocus) {
+          section.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+          document.querySelector("#session-title").focus({ preventScroll: true });
+        }
+      }
+
+      moduleList.addEventListener("click", event => {
+        const link = event.target.closest("[data-session]");
+        if (!link) return;
+        event.preventDefault();
+        openSession(Number(link.dataset.session), true);
+      });
+
+      document.querySelector("#previous-session").addEventListener("click", () => openSession(activeSession - 1, true));
+      document.querySelector("#next-session").addEventListener("click", () => openSession(activeSession + 1, true));
+      document.querySelector("#complete-session").addEventListener("click", () => {
+        if (progress.sessions.has(activeSession)) progress.sessions.delete(activeSession);
+        else if (sessionAnswers.querySelector('[data-correct="true"][aria-pressed="true"]')) progress.sessions.add(activeSession);
+        updateProgress();
+        persistProgress();
+        playFeedbackSound(progress.sessions.has(activeSession));
+      });
+
+      function playFeedbackSound(success) {
+        if (!soundToggle.checked) return;
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) {
+            soundNote.textContent = "Browser ini tidak mendukung bunyi. Gunakan umpan balik teks—semua aktivitas tetap berfungsi.";
+            return;
+          }
+          audioContext ||= new AudioContextClass();
+          if (audioContext.state === "suspended") audioContext.resume();
+          const notes = success ? [660, 880] : [330];
+          notes.forEach((frequency, index) => {
+            const startAt = audioContext.currentTime + index * .12;
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            oscillator.type = "sine";
+            oscillator.frequency.setValueAtTime(frequency, startAt);
+            gain.gain.setValueAtTime(.0001, startAt);
+            gain.gain.exponentialRampToValueAtTime(.07, startAt + .015);
+            gain.gain.exponentialRampToValueAtTime(.0001, startAt + .1);
+            oscillator.connect(gain);
+            gain.connect(audioContext.destination);
+            oscillator.start(startAt);
+            oscillator.stop(startAt + .11);
+          });
+          soundNote.textContent = "Bunyi singkat aktif. Matikan kapan saja; umpan balik teks selalu tersedia.";
+        } catch {
+          soundNote.textContent = "Bunyi tidak tersedia saat ini. Semua aktivitas tetap menampilkan umpan balik teks.";
+        }
+      }
+
+      soundToggle.addEventListener("change", () => {
+        soundButton.disabled = !soundToggle.checked;
+        soundNote.textContent = soundToggle.checked
+          ? "Bunyi hanya diputar setelah kamu memilih aksi. Tidak ada suara otomatis."
+          : "Bunyi mati. Aktifkan jika kamu ingin mendengarnya; semua aksi tetap punya umpan balik teks.";
+      });
+      soundButton.addEventListener("click", () => playFeedbackSound(true));
 
       function renderBoard() {
         board.replaceChildren();
@@ -586,16 +1054,6 @@
         document.querySelector("#undo-command").disabled = commands.length === 0 || isRunning;
       }
 
-      function updateProgress() {
-        const count = Number(progress.lesson) + progress.modules.size + Number(progress.quiz.size === 3);
-        document.querySelector("#progress-count").textContent = `${count} selesai`;
-        document.querySelectorAll(".module-done").forEach(button => {
-          const done = progress.modules.has(Number(button.dataset.module));
-          button.setAttribute("aria-pressed", String(done));
-          button.textContent = done ? "✓ Selesai" : "Tandai selesai";
-        });
-      }
-
       function readSavedProgress() {
         try {
           const saved = localStorage.getItem(storageKey);
@@ -604,8 +1062,8 @@
           if (data && data.enabled === true) {
             saveToggle.checked = true;
             progress.lesson = data.lesson === true;
-            progress.modules = new Set(Array.isArray(data.modules)
-              ? data.modules.filter(id => Number.isInteger(id) && id >= 1 && id <= modules.length)
+            progress.sessions = new Set(Array.isArray(data.sessions)
+              ? data.sessions.filter(id => Number.isInteger(id) && id >= 1 && id <= modules.length)
               : []);
             progress.quiz = new Set(Array.isArray(data.quiz)
               ? data.quiz.filter(id => Number.isInteger(id) && id >= 1 && id <= quizQuestions.length)
@@ -633,7 +1091,7 @@
           localStorage.setItem(storageKey, JSON.stringify({
             enabled: true,
             lesson: progress.lesson,
-            modules: [...progress.modules],
+            sessions: [...progress.sessions],
             quiz: [...progress.quiz]
           }));
           storageMessage.textContent = "Progres tersimpan lokal di browser perangkat ini saja.";
@@ -646,8 +1104,10 @@
       function markLessonDone() {
         if (robot.row === 0 && robot.col === 3) {
           progress.lesson = true;
+          progress.sessions.add(1);
           updateProgress();
           persistProgress();
+          playFeedbackSound(true);
         }
       }
 
@@ -672,16 +1132,6 @@
           mainNav.classList.remove("open");
           menuToggle.setAttribute("aria-expanded", "false");
         }
-      });
-
-      document.querySelectorAll(".module-done").forEach(button => {
-        button.addEventListener("click", () => {
-          const id = Number(button.dataset.module);
-          if (progress.modules.has(id)) progress.modules.delete(id);
-          else progress.modules.add(id);
-          updateProgress();
-          persistProgress();
-        });
       });
 
       document.querySelectorAll(".command-button").forEach(button => {
@@ -809,7 +1259,7 @@
       });
       document.querySelector("#clear-progress").addEventListener("click", () => {
         progress.lesson = false;
-        progress.modules.clear();
+        progress.sessions.clear();
         progress.quiz.clear();
         try {
           localStorage.removeItem(storageKey);
@@ -819,6 +1269,7 @@
         } catch {
           storageMessage.textContent = "Progres pada halaman ini dihapus, tetapi browser tidak dapat menghapus penyimpanan lokal.";
         }
+        renderSession(activeSession);
         updateProgress();
         document.querySelectorAll(".quiz-feedback").forEach(item => { item.textContent = ""; item.className = "quiz-feedback"; });
         document.querySelectorAll(".quiz-option").forEach(item => item.setAttribute("aria-pressed", "false"));
@@ -827,6 +1278,7 @@
       document.querySelector("#year").textContent = new Date().getFullYear();
       readSavedProgress();
       renderBoard();
+      renderSession(1);
       updateSequence();
       updateProgress();
     })();
