@@ -1,141 +1,202 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurikulum Koding & Kecerdasan Artifisial - Kemendikdasmen</title>
-    <!-- Tailwind CSS untuk styling modern yang cepat -->
+    <title>Koding & Kecerdasan Artifisial (KKA) - Kemendikdasmen</title>
+    <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white antialiased">
 
-    <!-- Header / Navbar -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-indigo-600 text-white p-2 rounded-lg">
-                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                    <i data-lucide="brain-circuit" class="w-6 h-6 text-white"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg text-slate-900">Kemendikdasmen</h1>
-                    <p class="text-xs text-slate-500">Koding & Kecerdasan Artifisial</p>
+                    <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">
+                        KKA Kemendikdasmen
+                    </span>
+                    <span class="block text-xs text-indigo-400 font-medium">Koding & Kecerdasan Artifisial</span>
                 </div>
             </div>
-            <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" rel="noopener noreferrer" 
-               class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition duration-200 flex items-center space-x-2">
-                <span>Situs Resmi</span>
-                <i class="fa-solid fa-external-link-alt text-xs"></i>
-            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#pembelajaran" class="hover:text-indigo-400 transition">Kurikulum</a>
+                <a href="#jalur" class="hover:text-indigo-400 transition">Jenjang</a>
+                <a href="https://kodingka.kemendikdasmen.go.id" target="_blank" class="hover:text-indigo-400 transition">Portal Resmi</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="https://kodingka.kemendikdasmen.go.id" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-600/30 transition text-sm font-semibold">
+                    <span>Webview Resmi</span>
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-indigo-900 to-blue-800 text-white py-16 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="bg-indigo-500/30 text-indigo-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">
-                Inisiatif Kurikulum Baru
-            </span>
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
-                Mempersiapkan Generasi Unggul Lewat Koding & AI
-            </h2>
-            <p class="text-indigo-100 text-base md:text-lg mb-8 max-w-2xl mx-auto">
-                Informasi dan panduan resmi mengenai integrasi mata pelajaran Koding dan Kecerdasan Artifisial dalam sistem pendidikan dasar dan menengah di Indonesia.
+    <!-- HERO SECTION -->
+    <section class="relative pt-24 pb-20 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Inisiatif Strategis Kurikulum Nasional</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+                Membangun Generasi Kreator Lewat <span class="bg-gradient-to-r from-indigo-400 via-violet-400 to-pink-400 bg-clip-text text-transparent">Koding & AI</span>
+            </h1>
+
+            <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto">
+                Transformasi pendidikan dasar dan menengah untuk membekali peserta didik dengan kemampuan berpikir komputasional, etika digital, dan kecerdasan artifisial.
             </p>
-            <div class="flex justify-center gap-4">
-                <a href="#info-utama" class="bg-white text-indigo-900 font-semibold px-6 py-3 rounded-lg shadow hover:bg-indigo-50 transition">
-                    Pelajari Selengkapnya
+
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#pembelajaran" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg shadow-indigo-600/30 transition flex items-center justify-center space-x-2">
+                    <span>Eksplorasi Kurikulum</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </a>
+                <a href="https://kodingka.kemendikdasmen.go.id" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold transition flex items-center justify-center space-x-2">
+                    <span>Kunjungi Portal Resmi</span>
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main id="info-utama" class="max-w-7xl mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <!-- Kolom Kiri/Utama: Ringkasan Info -->
-            <div class="md:col-span-2 space-y-6">
-                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4 flex items-center space-x-3">
-                        <i class="fa-solid fa-book-open text-indigo-600"></i>
-                        <span>Tentang Program Koding & KA</span>
-                    </h3>
-                    <p class="text-slate-600 leading-relaxed mb-4">
-                        Program ini dirancang untuk menjawab tantangan era digital global, di mana kemampuan pemecahan masalah (problem solving), logika komputasi, serta pemahaman dasar mengenai kecerdasan artifisial menjadi fondasi penting bagi siswa sejak dini.
-                    </p>
-                    <p class="text-slate-600 leading-relaxed">
-                        Melalui laman resmi Kemendikdasmen, pendidik, orang tua, dan siswa dapat mengakses dokumen panduan, capaian pembelajaran, serta modul pelatihan terkait kurikulum ini.
-                    </p>
+    <!-- PILAR UTAMA -->
+    <section id="pembelajaran" class="py-20 border-t border-slate-900 bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight">Pilar & Domain Pembelajaran</h2>
+                <p class="mt-3 text-slate-400">Dirancang agar peserta didik menguasai logika, teknologi, dan etika digital.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80 hover:border-indigo-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Berpikir Komputasional</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Melatih siswa mengurai masalah rumit menjadi langkah-langkah logis dan terstruktur.</p>
                 </div>
 
-                <!-- Bagian Preview/Embed Alternatif (Fallback jika situs mengizinkan iframe) -->
-                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
-                    <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center space-x-3">
-                        <i class="fa-solid fa-desktop text-indigo-600"></i>
-                        <span>Akses Halaman Langsung</span>
-                    </h3>
-                    <p class="text-slate-600 mb-6 text-sm">
-                        Jika Anda ingin melihat tampilan interaktif langsung di situs sumber, silakan klik tombol di bawah ini untuk membuka tautan resminya di tab baru.
-                    </p>
-                    <div class="p-6 bg-slate-100 rounded-xl text-center border border-dashed border-slate-300">
-                        <i class="fa-solid fa-globe text-4xl text-indigo-500 mb-3"></i>
-                        <h4 class="font-semibold text-slate-800 mb-1">kurikulum.kemendikdasmen.go.id/koding-ka</h4>
-                        <p class="text-xs text-slate-500 mb-4">Buka halaman resmi Kementerian Pendidikan Dasar dan Menengah.</p>
-                        <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" rel="noopener noreferrer" 
-                           class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg text-sm transition">
-                            Kunjungi Situs Sekarang <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </a>
+                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80 hover:border-violet-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400 mb-6">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Literasi Kecerdasan Artifisial</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Mengenalkan cara mesin belajar dari data, pola, dan pemanfaatan alat AI secara bijak.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-slate-900/50 border border-slate-800/80 hover:border-pink-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-pink-600/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-6">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Etika & Keamanan Digital</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Membentuk kesadaran agar teknologi digunakan secara aman, bertanggung jawab, dan beretika.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPLEMENTASI BERJENJANG (INTERACTIVE TABS) -->
+    <section id="jalur" class="py-20 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Implementasi Berjenjang</h2>
+                <p class="mt-3 text-slate-400">Kurikulum yang disesuaikan dengan tahap perkembangan peserta didik.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center space-x-2 mb-12">
+                <button onclick="switchTab('sd')" id="btn-sd" class="px-6 py-3 rounded-xl font-semibold text-sm transition uppercase tracking-wider bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">SD (Kelas 5-6)</button>
+                <button onclick="switchTab('smp')" id="btn-smp" class="px-6 py-3 rounded-xl font-semibold text-sm transition uppercase tracking-wider bg-slate-900 text-slate-400 hover:bg-slate-800 border border-slate-800">SMP (Kelas 7-9)</button>
+                <button onclick="switchTab('sma')" id="btn-sma" class="px-6 py-3 rounded-xl font-semibold text-sm transition uppercase tracking-wider bg-slate-900 text-slate-400 hover:bg-slate-800 border border-slate-800">SMA / SMK</button>
+            </div>
+
+            <!-- Tab Content Box -->
+            <div class="max-w-3xl mx-auto p-8 rounded-2xl bg-slate-900/40 border border-slate-800">
+                <div id="content-sd" class="tab-content">
+                    <span class="text-indigo-400 font-semibold text-xs uppercase tracking-widest">Pendidikan Dasar</span>
+                    <h3 class="text-2xl font-bold mt-1 mb-4">Sekolah Dasar (Kelas 5 - 6)</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6">Fokus pada pengenalan dasar melalui pendekatan visual, metode <span class="text-indigo-300 font-medium">unplugged</span> (tanpa komputer), permainan edukatif, serta puzzle logika.</p>
+                    <div class="flex items-center space-x-2 text-sm text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800/60">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-400"></i>
+                        <span>Alokasi Waktu: Mata pelajaran pilihan (2 Jam per minggu).</span>
+                    </div>
+                </div>
+
+                <div id="content-smp" class="tab-content hidden">
+                    <span class="text-violet-400 font-semibold text-xs uppercase tracking-widest">Pendidikan Menengah Pertama</span>
+                    <h3 class="text-2xl font-bold mt-1 mb-4">Sekolah Menengah Pertama (Kelas 7 - 9)</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6">Pengenalan <span class="text-violet-300 font-medium">pemrograman berbasis blok</span> (seperti Scratch) serta eksplorasi konsep dasar kecerdasan artifisial interaktif.</p>
+                    <div class="flex items-center space-x-2 text-sm text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800/60">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-violet-400"></i>
+                        <span>Alokasi Waktu: Mata pelajaran pilihan (2 Jam per minggu).</span>
+                    </div>
+                </div>
+
+                <div id="content-sma" class="tab-content hidden">
+                    <span class="text-pink-400 font-semibold text-xs uppercase tracking-widest">Pendidikan Menengah Atas / Kejuruan</span>
+                    <h3 class="text-2xl font-bold mt-1 mb-4">SMA / SMK (Kelas 10 - 12)</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6">Memasuki ranah pemrograman berbasis teks (<span class="text-pink-300 font-medium">Python</span>), rekayasa prompt, hingga pengembangan aplikasi atau model AI terapan.</p>
+                    <div class="flex items-center space-x-2 text-sm text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800/60">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-pink-400"></i>
+                        <span>Alokasi Waktu: Fleksibel hingga 4–5 jam per minggu.</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Kolom Kanan: Sidebar Navigasi Cepat -->
-            <div class="space-y-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h4 class="font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100">Poin Penting</h4>
-                    <ul class="space-y-3 text-sm text-slate-600">
-                        <li class="flex items-start space-x-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span>Pengenalan Algoritma & Logika Dasar</span>
-                        </li>
-                        <li class="flex items-start space-x-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span>Literasi Kecerdasan Artifisial (AI)</span>
-                        </li>
-                        <li class="flex items-start space-x-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span>Penerapan Etika Digital & Keamanan</span>
-                        </li>
-                        <li class="flex items-start space-x-2">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span>Panduan Guru & Modul Ajar</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                    <h4 class="font-bold text-indigo-900 mb-2">Butuh Bantuan?</h4>
-                    <p class="text-xs text-indigo-700 leading-relaxed mb-4">
-                        Kunjungi portal utama Kurikulum Kemendikdasmen untuk informasi pembaruan kebijakan pendidikan lainnya.
-                    </p>
-                    <a href="https://kurikulum.kemendikdasmen.go.id/" target="_blank" rel="noopener noreferrer" 
-                       class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center space-x-1">
-                        <span>Portal Utama Kurikulum</span>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-12 py-6">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            <p>&copy; 2026 - Halaman Informasi Kurikulum Koding & KA. Referensi dari <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" class="text-indigo-600 hover:underline">Kemendikdasmen</a>.</p>
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 py-12 bg-slate-950 text-center text-sm text-slate-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 KKA Kemendikdasmen Ecosystem. Hosted on GitHub Pages.</p>
+            <div class="flex items-center space-x-6">
+                <a href="https://kodingka.kemendikdasmen.go.id" target="_blank" class="hover:text-slate-300 transition">Portal Koding & KA</a>
+            </div>
         </div>
     </footer>
 
+    <!-- Script Interaktif Tab & Lucide Icons -->
+    <script>
+        lucide.createIcons();
+
+        function switchTab(type) {
+            ['sd', 'smp', 'sma'].forEach(t => {
+                document.getElementById('content-' + t).classList.add('hidden');
+                const btn = document.getElementById('btn-' + t);
+                btn.className = "px-6 py-3 rounded-xl font-semibold text-sm transition uppercase tracking-wider bg-slate-900 text-slate-400 hover:bg-slate-800 border border-slate-800";
+            });
+
+            document.getElementById('content-' + type).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + type);
+            activeBtn.className = "px-6 py-3 rounded-xl font-semibold text-sm transition uppercase tracking-wider bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
+        }
+    </script>
 </body>
 </html>
