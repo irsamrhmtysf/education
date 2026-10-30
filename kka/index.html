@@ -1,375 +1,835 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<!doctype html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pusat Informasi Resmi Kurikulum Koding & Kecerdasan Artifisial (KKA) - Kemendikdasmen</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 50: '#eef2ff', 600: '#4f46e5', 700: '#4338ca', 900: '#312e81' }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Ruang belajar Koding dan Kecerdasan Artifisial untuk siswa SMA dan orang tua. Belajar algoritma, mencoba aktivitas interaktif, dan memahami AI dengan aman.">
+  <title>Ruang KKA — Belajar Koding & AI untuk SMA</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #647084;
+      --paper: #fbfaf7;
+      --white: #fff;
+      --line: #e7e8eb;
+      --navy: #111827;
+      --blue: #5267e8;
+      --blue-dark: #3549c5;
+      --mint: #a7f3d0;
+      --peach: #ffe0c2;
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(27, 38, 65, .08);
+    }
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-brand-900 text-white text-xs py-2 px-4 text-center">
-        <span><i class="fa-solid fa-bullhorn mr-2"></i> Portal Informasi Resmi Transisi Kurikulum Koding & Kecerdasan Artifisial (KKA) Kemendikdasmen</span>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.6 "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+    .skip-link {
+      position: absolute; z-index: 20; top: .5rem; left: .5rem;
+      padding: .7rem 1rem; background: var(--white); border-radius: 10px;
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      color: var(--blue-dark); font-size: .75rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .eyebrow::before { width: 20px; height: 2px; content: ""; background: currentColor; }
+    .section { padding: 82px 0; }
+    .section-heading { max-width: 700px; margin-bottom: 34px; }
+    .section-heading h2 {
+      margin: .55rem 0 .65rem; font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.12; letter-spacing: -.045em;
+    }
+    .section-heading p { max-width: 620px; margin: 0; color: var(--muted); }
+    .button {
+      display: inline-flex; min-height: 48px; align-items: center; justify-content: center;
+      gap: .55rem; padding: .7rem 1.15rem; border: 1px solid transparent;
+      border-radius: 13px; font-weight: 750; text-decoration: none; transition: .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--blue); color: var(--white); box-shadow: 0 9px 22px #5267e83d; }
+    .button-primary:hover { background: var(--blue-dark); }
+    .button-light { background: var(--white); color: var(--navy); }
+    .button-outline { border-color: #ffffff5c; color: var(--white); background: #ffffff0d; }
+    .button-subtle { border-color: var(--line); background: var(--white); color: var(--ink); }
+    .small-note { font-size: .83rem; color: var(--muted); }
+    .site-header {
+      position: sticky; z-index: 10; top: 0; background: #fbfaf7ed;
+      border-bottom: 1px solid #e8e7e2; backdrop-filter: blur(14px);
+    }
+    .header-inner { display: flex; min-height: 74px; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: .7rem; font-weight: 850; text-decoration: none; letter-spacing: -.03em; }
+    .brand-mark {
+      display: grid; width: 40px; height: 40px; place-items: center;
+      border-radius: 13px; color: var(--white); background: var(--blue); font-size: 1.2rem;
+    }
+    .brand small { display: block; color: var(--muted); font-size: .69rem; font-weight: 650; letter-spacing: 0; }
+    .main-nav { display: flex; align-items: center; gap: 23px; }
+    .main-nav a { color: #4d586b; font-size: .88rem; font-weight: 700; text-decoration: none; }
+    .main-nav a:hover { color: var(--blue-dark); }
+    .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 11px; background: var(--white); padding: .55rem .8rem; }
+
+    .hero {
+      position: relative; overflow: hidden; padding: 82px 0 74px;
+      color: var(--white); background:
+        radial-gradient(ellipse at 86% 20%, #5f70e755, transparent 33%),
+        radial-gradient(ellipse at 72% 95%, #20b78b2b, transparent 30%),
+        var(--navy);
+    }
+    .hero::after {
+      position: absolute; top: -150px; right: -115px; width: 510px; height: 510px;
+      border: 1px solid #ffffff12; border-radius: 50%; content: "";
+      box-shadow: 0 0 0 52px #ffffff08, 0 0 0 104px #ffffff05;
+    }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 54px; }
+    .hero .eyebrow { color: var(--mint); }
+    .hero h1 { max-width: 680px; margin: 18px 0; font-size: clamp(2.8rem, 6vw, 5rem); line-height: .99; letter-spacing: -.065em; }
+    .hero h1 span { color: var(--mint); }
+    .hero-copy { max-width: 570px; color: #c8d0de; font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-proof { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 25px; color: #cad2e0; font-size: .83rem; }
+    .hero-proof span::before { margin-right: .4rem; color: var(--mint); content: "✓"; font-weight: 900; }
+    .hero-art {
+      position: relative; min-height: 345px; padding: 23px; border: 1px solid #ffffff20;
+      border-radius: 28px; background: linear-gradient(145deg, #ffffff16, #ffffff06);
+      box-shadow: 0 28px 80px #00000025; transform: rotate(2deg);
+    }
+    .art-label { display: flex; justify-content: space-between; color: #e5e9f2; font-size: .78rem; font-weight: 700; }
+    .art-label span:last-child { color: var(--mint); }
+    .mini-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; max-width: 300px; margin: 22px auto 14px; }
+    .mini-cell {
+      display: grid; aspect-ratio: 1; place-items: center; border: 1px solid #ffffff20;
+      border-radius: 13px; background: #ffffff0d; font-size: 1.35rem;
+    }
+    .mini-cell.robot { background: var(--mint); color: var(--navy); }
+    .mini-cell.goal { background: var(--peach); }
+    .code-card { margin-top: 19px; padding: 14px 16px; border-radius: 14px; background: #090f1d8c; color: #cdd6e5; font: .81rem/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .code-card b { color: var(--mint); }
+    .float-tag { position: absolute; right: -17px; bottom: 30px; padding: 10px 14px; border-radius: 12px; background: var(--peach); color: #623e23; font-size: .8rem; font-weight: 800; transform: rotate(-4deg); }
+
+    .welcome-strip { padding: 22px 0; background: #f0efe9; }
+    .welcome-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .welcome-inner p { margin: 0; color: #475368; font-size: .9rem; }
+    .draft-tag { flex: 0 0 auto; padding: 5px 10px; border-radius: 999px; background: #e3e7ff; color: #3d4db4; font-size: .73rem; font-weight: 800; }
+
+    .audience-layout { display: grid; grid-template-columns: .7fr 1.3fr; align-items: start; gap: 42px; }
+    .audience-switch { display: inline-flex; gap: 4px; padding: 5px; border: 1px solid var(--line); border-radius: 15px; background: #f0efe9; }
+    .audience-switch button { border: 0; border-radius: 10px; padding: .65rem 1rem; color: #596477; background: transparent; font-size: .88rem; font-weight: 750; }
+    .audience-switch button[aria-pressed="true"] { color: var(--white); background: var(--navy); box-shadow: 0 3px 8px #11182724; }
+    .audience-panel { min-height: 238px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    .audience-panel h3 { margin: 0 0 10px; font-size: 1.45rem; letter-spacing: -.035em; }
+    .audience-panel p { margin: 0; color: var(--muted); }
+    .tip-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .tip-list li { color: #465166; font-size: .9rem; }
+    .tip-list li::before { margin-right: .5rem; color: #14835e; content: "✦"; }
+
+    .progress-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 21px 24px; border: 1px solid #dfe5ff; border-radius: 18px; background: #f0f2ff; }
+    .progress-card h3 { margin: 0; font-size: 1rem; }
+    .progress-card p { margin: 3px 0 0; color: var(--muted); font-size: .83rem; }
+    .progress-right { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .progress-count { min-width: 100px; color: var(--blue-dark); font-size: .85rem; font-weight: 800; }
+    .progress-setting { display: flex; align-items: center; gap: 8px; color: #4e596c; font-size: .82rem; font-weight: 700; }
+    .progress-setting input { width: 18px; height: 18px; accent-color: var(--blue); }
+    .privacy-hint { width: 100%; color: #68748a; font-size: .78rem; }
+
+    .journey-section { background: #f0efe9; }
+    .journey-top { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+    .journey-top .section-heading { margin-bottom: 28px; }
+    .journey-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .module-card { position: relative; min-height: 205px; padding: 18px; border: 1px solid #e4e3de; border-radius: 18px; background: var(--white); }
+    .module-number { display: inline-grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; background: #edf0ff; color: var(--blue-dark); font-size: .82rem; font-weight: 850; }
+    .module-card h3 { margin: 15px 0 6px; font-size: 1rem; line-height: 1.3; }
+    .module-card p { min-height: 46px; margin: 0 0 12px; color: var(--muted); font-size: .8rem; line-height: 1.5; }
+    .module-meta { color: #7a8495; font-size: .73rem; font-weight: 700; }
+    .module-done {
+      margin-top: 11px; padding: 5px 9px; border: 1px solid #e3e6ee;
+      border-radius: 9px; background: #fff; color: #4b5668; font-size: .74rem; font-weight: 750;
+    }
+    .module-done[aria-pressed="true"] { border-color: #a9dec7; background: #e6f8ef; color: #116640; }
+
+    .lesson-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 28px; align-items: stretch; }
+    .lesson-intro { padding: 30px; border-radius: var(--radius); background: var(--navy); color: var(--white); }
+    .lesson-intro .eyebrow { color: var(--mint); }
+    .lesson-intro h3 { margin: 13px 0 12px; font-size: 1.8rem; line-height: 1.1; letter-spacing: -.04em; }
+    .lesson-intro p { color: #c5ccda; font-size: .9rem; }
+    .lesson-goal { margin-top: 20px; padding: 13px; border: 1px solid #ffffff20; border-radius: 13px; color: #dce5f2; font-size: .83rem; }
+    .robot-lab { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    .lab-head { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+    .lab-head h3 { margin: 0; font-size: 1.05rem; }
+    .lab-head p { margin: 4px 0; color: var(--muted); font-size: .8rem; }
+    .lab-badge { flex: 0 0 auto; padding: 5px 9px; border-radius: 999px; background: #fff1dd; color: #8a5318; font-size: .72rem; font-weight: 800; }
+    .robot-board { display: grid; width: min(100%, 340px); grid-template-columns: repeat(4, 1fr); gap: 7px; margin: 18px auto; padding: 10px; border-radius: 15px; background: #e9edf7; }
+    .robot-cell { display: grid; aspect-ratio: 1; place-items: center; border-radius: 9px; background: #fff; color: #657187; }
+    .robot-cell.start { background: #dff8eb; }
+    .robot-cell.finish { background: #ffecd9; color: #8b531b; }
+    .robot-cell.obstacle { background: #d9deea; }
+    .robot-cell .bot { display: inline-block; font-size: 1.45rem; transition: transform .18s ease; }
+    .robot-cell.visited { box-shadow: inset 0 0 0 2px #a5b3fa; }
+    .commands { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .command-button { min-height: 42px; padding: .5rem .85rem; border: 1px solid #dfe2e9; border-radius: 11px; background: #fff; color: #354055; font-weight: 750; font-size: .81rem; }
+    .command-button:hover { border-color: #9daaf6; background: #f3f5ff; }
+    .command-button:disabled { cursor: not-allowed; opacity: .48; }
+    .sequence { min-height: 47px; margin: 12px 0; padding: 10px 12px; border: 1px dashed #cbd1dc; border-radius: 11px; color: #526074; background: #fbfcfe; font: .77rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .lab-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .lab-feedback { min-height: 26px; margin: 12px 0 0; text-align: center; color: var(--blue-dark); font-size: .83rem; font-weight: 700; }
+    .lab-hint { margin-top: 12px; text-align: center; color: #788294; font-size: .75rem; }
+    .quiz-section { padding-top: 0; }
+    .quiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .quiz-card { padding: 19px; border: 1px solid var(--line); border-radius: 17px; background: var(--white); }
+    .quiz-card h3 { margin: 0 0 13px; font-size: .96rem; line-height: 1.4; }
+    .quiz-options { display: grid; gap: 8px; }
+    .quiz-option { width: 100%; padding: 9px 11px; border: 1px solid #e4e7ed; border-radius: 10px; background: #fff; color: #4a5669; text-align: left; font-size: .83rem; }
+    .quiz-option[aria-pressed="true"] { border-color: var(--blue); background: #f0f2ff; color: #3345b1; }
+    .quiz-feedback { min-height: 22px; margin: 10px 0 0; color: var(--muted); font-size: .78rem; }
+    .quiz-feedback.correct { color: #137548; font-weight: 750; }
+    .quiz-feedback.incorrect { color: #a04d28; }
+    .offline-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 25px; padding: 27px 30px; border-radius: var(--radius); background: #e8f7ef; }
+    .offline-card h3 { margin: 0 0 5px; font-size: 1.25rem; }
+    .offline-card p { margin: 0; color: #53655d; font-size: .9rem; }
+    .offline-steps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+    .offline-steps span { padding: 5px 10px; border-radius: 999px; background: #fff; color: #315746; font-size: .75rem; font-weight: 750; }
+
+    .parent-section { color: var(--white); background: var(--navy); }
+    .parent-section .eyebrow { color: var(--mint); }
+    .parent-section .section-heading p { color: #c1cad8; }
+    .parent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .parent-card { padding: 22px; border: 1px solid #ffffff1b; border-radius: 17px; background: #ffffff0a; }
+    .parent-card .icon { font-size: 1.35rem; }
+    .parent-card h3 { margin: 10px 0 6px; font-size: 1rem; }
+    .parent-card p { margin: 0; color: #c2ccda; font-size: .83rem; }
+    .privacy-banner { margin-top: 20px; padding: 16px 18px; border: 1px solid #8ce2bd42; border-radius: 14px; color: #d4eee1; background: #1b7b5121; font-size: .86rem; }
+
+    .faq-list { display: grid; gap: 10px; max-width: 850px; }
+    .faq-list details { padding: 17px 19px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); }
+    .faq-list summary { cursor: pointer; font-weight: 750; }
+    .faq-list details p { margin: 10px 0 0; color: var(--muted); font-size: .9rem; }
+    .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .resource-links a { color: var(--blue-dark); font-size: .86rem; font-weight: 750; }
+    .site-footer { padding: 34px 0; color: #c1c9d6; background: #0c1220; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 30px; }
+    .footer-inner p { max-width: 620px; margin: 4px 0; font-size: .8rem; }
+    .footer-brand { color: white; font-weight: 850; }
+
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr .8fr; gap: 24px; }
+      .hero-art { min-height: 320px; }
+      .main-nav { gap: 14px; }
+      .journey-list { grid-template-columns: repeat(3, 1fr); }
+      .lesson-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 30px, 560px); }
+      .section { padding: 62px 0; }
+      .header-inner { min-height: 66px; }
+      .menu-toggle { display: inline-flex; align-items: center; gap: 7px; }
+      .main-nav {
+        position: absolute; top: 65px; right: 15px; left: 15px; display: none;
+        align-items: stretch; flex-direction: column; gap: 0; padding: 8px;
+        border: 1px solid var(--line); border-radius: 15px; background: var(--white); box-shadow: var(--shadow);
+      }
+      .main-nav.open { display: flex; }
+      .main-nav a { padding: 10px; }
+      .hero { padding: 61px 0 52px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(2.8rem, 14vw, 4.3rem); }
+      .hero-art { width: min(100% - 10px, 430px); min-height: auto; margin: 10px auto 4px; }
+      .mini-board { max-width: 230px; }
+      .welcome-inner { align-items: start; flex-direction: column; }
+      .audience-layout { grid-template-columns: 1fr; gap: 18px; }
+      .audience-panel { min-height: 0; padding: 23px; }
+      .tip-list { grid-template-columns: 1fr; }
+      .journey-top { align-items: start; flex-direction: column; }
+      .journey-list { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .module-card { min-height: 215px; padding: 14px; }
+      .module-card p { min-height: 65px; }
+      .robot-lab { padding: 19px 13px; }
+      .robot-board { gap: 5px; }
+      .quiz-grid, .parent-grid { grid-template-columns: 1fr; }
+      .offline-card { grid-template-columns: 1fr; padding: 22px; }
+      .progress-card { align-items: start; flex-direction: column; }
+      .progress-right { align-items: start; flex-direction: column; }
+      .footer-inner { flex-direction: column; gap: 12px; }
+    }
+    @media (max-width: 390px) {
+      .journey-list { grid-template-columns: 1fr; }
+      .module-card { min-height: 0; }
+      .module-card p { min-height: 0; }
+      .lab-head { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#atas" aria-label="Ruang KKA, kembali ke awal">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span>Ruang KKA<small>Belajar bareng untuk SMA</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigasi">
+        <span aria-hidden="true">☰</span><span>Menu</span>
+      </button>
+      <nav class="main-nav" id="navigasi" aria-label="Navigasi utama">
+        <a href="#cara-belajar">Mulai</a>
+        <a href="#peta-belajar">Peta belajar</a>
+        <a href="#pelajaran">Coba aktivitas</a>
+        <a href="#untuk-orang-tua">Untuk orang tua</a>
+        <a href="#tanya-jawab">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="konten">
+    <section class="hero" id="atas">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Ruang belajar mandiri · SMA</span>
+          <h1>Teknologi dipahami. <span>Ide jadi nyata.</span></h1>
+          <p class="hero-copy">Kenali cara kerja koding dan kecerdasan artifisial lewat langkah kecil, permainan logika, dan kebiasaan berpikir kritis. Bisa mulai dari ponsel—atau tanpa perangkat sama sekali.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#pelajaran">Mulai aktivitas pertama <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="#peta-belajar">Lihat peta belajar</a>
+          </div>
+          <div class="hero-proof" aria-label="Keunggulan ruang belajar">
+            <span>Tanpa akun</span><span>Progres di perangkatmu</span><span>AI tidak wajib</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Ilustrasi robot belajar mengikuti langkah pada kotak-kotak" role="img">
+          <div class="art-label"><span>LAB ALGORITMA</span><span>● SIAP BELAJAR</span></div>
+          <div class="mini-board" aria-hidden="true">
+            <div class="mini-cell">·</div><div class="mini-cell">·</div><div class="mini-cell">·</div><div class="mini-cell goal">★</div>
+            <div class="mini-cell">·</div><div class="mini-cell">▧</div><div class="mini-cell">·</div><div class="mini-cell">·</div>
+            <div class="mini-cell">·</div><div class="mini-cell">·</div><div class="mini-cell">▧</div><div class="mini-cell">·</div>
+            <div class="mini-cell robot">🤖</div><div class="mini-cell">·</div><div class="mini-cell">·</div><div class="mini-cell">·</div>
+          </div>
+          <div class="code-card"><b>01</b>  AMATI TUJUAN<br><b>02</b>  SUSUN LANGKAH<br><b>03</b>  UJI &amp; PERBAIKI</div>
+          <div class="float-tag">Salah langkah? Coba lagi ✨</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="welcome-strip">
+      <div class="container welcome-inner">
+        <p><strong>Koding dan AI bukan hanya soal layar.</strong> Kita belajar menyusun ide, mencoba, mengecek, dan bertanggung jawab.</p>
+        <span class="draft-tag">Bahan belajar adaptif · bukan kurikulum resmi</span>
+      </div>
     </div>
 
-    <!-- Main Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-brand-600 text-white p-2.5 rounded-xl shadow-sm">
-                    <i class="fa-solid fa-graduation-cap text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="font-extrabold text-base sm:text-lg text-slate-900 tracking-tight">KEMENDIKDASMEN</h1>
-                    <p class="text-xs text-slate-500 font-medium">Kurikulum Koding & Kecerdasan Artifisial</p>
-                </div>
-            </div>
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
-                <a href="#tentang" class="hover:text-brand-600 transition">Tentang</a>
-                <a href="#jenjang" class="hover:text-brand-600 transition">Jenjang Pendidikan</a>
-                <a href="#pilar" class="hover:text-brand-600 transition">Pilar Utama</a>
-                <a href="#dokumen" class="hover:text-brand-600 transition">Dokumen Resmi</a>
-                <a href="#faq" class="hover:text-brand-600 transition">FAQ</a>
-            </nav>
-            <div>
-                <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" rel="noopener noreferrer" 
-                   class="bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition shadow-sm flex items-center space-x-2">
-                    <span>Situs Utama Kemen</span>
-                    <i class="fa-solid fa-external-link-alt text-[10px]"></i>
-                </a>
-            </div>
+    <section class="section" id="cara-belajar">
+      <div class="container audience-layout">
+        <div>
+          <span class="eyebrow">Pilih jalurmu</span>
+          <div class="section-heading">
+            <h2>Belajar dengan cara yang cocok buatmu.</h2>
+            <p>Konten ini dirancang untuk siswa SMA yang ingin bersiap, dan orang tua yang ingin ikut memahami.</p>
+          </div>
+          <div class="audience-switch" role="group" aria-label="Pilih panduan">
+            <button type="button" data-audience="siswa" aria-pressed="true">Saya siswa</button>
+            <button type="button" data-audience="ortu" aria-pressed="false">Saya orang tua</button>
+          </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-brand-900 via-brand-700 to-indigo-900 text-white py-20 px-4 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="bg-white/10 text-indigo-200 text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block border border-white/10">
-                <i class="fa-solid fa-shield-halved mr-1"></i> Kebijakan Resmi Pendidikan Nasional
-            </span>
-            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight">
-                Membangun Kedaulatan Digital Melalui Koding & Kecerdasan Artifisial
-            </h2>
-            <p class="text-indigo-100 text-base sm:text-lg mb-10 max-w-3xl mx-auto leading-relaxed">
-                Pusat referensi komprehensif panduan implementasi, struktur capaian pembelajaran, serta modul literasi teknologi masa depan bagi seluruh satuan pendidikan di Indonesia.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#tentang" class="bg-white text-brand-900 font-bold px-6 py-3.5 rounded-xl shadow-md hover:bg-slate-100 transition text-sm">
-                    Mulai Eksplorasi Informasi
-                </a>
-                <a href="#dokumen" class="bg-brand-600/50 hover:bg-brand-600 text-white font-bold px-6 py-3.5 rounded-xl border border-white/20 transition text-sm">
-                    Unduh Dokumen Silabus
-                </a>
-            </div>
+        <div class="audience-panel" id="panel-siswa" data-panel="siswa">
+          <h3>Mulai dari rasa ingin tahu.</h3>
+          <p>Kamu tidak perlu pernah membuat program sebelumnya. Pilih aktivitas singkat, ikuti rasa penasaran, dan anggap kesalahan sebagai petunjuk untuk mencoba lagi.</p>
+          <ul class="tip-list">
+            <li>Mulai dengan aktivitas robot di bawah.</li>
+            <li>Gunakan contoh fiktif, bukan data pribadimu.</li>
+            <li>Boleh belajar offline dengan kertas.</li>
+            <li>AI boleh dibahas, tapi tidak harus digunakan.</li>
+          </ul>
         </div>
+        <div class="audience-panel" id="panel-ortu" data-panel="ortu" hidden>
+          <h3>Dampingi dengan obrolan, bukan jawaban instan.</h3>
+          <p>Tujuan belajar adalah memahami proses berpikir dan memeriksa hasil—bukan mengejar alat terbaru atau mengetik kode paling cepat.</p>
+          <ul class="tip-list">
+            <li>Tanyakan, “Bagaimana kamu tahu langkah itu berhasil?”</li>
+            <li>Rayakan usaha menguji dan memperbaiki.</li>
+            <li>Tak perlu perangkat atau akun untuk mulai.</li>
+            <li>Ikuti aturan sekolah untuk layanan digital.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- Quick Stats / Highlights Bar -->
-    <section class="bg-white border-b border-slate-200 shadow-sm py-6">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div class="border-r border-slate-100 last:border-none">
-                <div class="text-2xl sm:text-3xl font-black text-brand-600">3 Jenjang</div>
-                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">SD, SMP, SMA/SMK Terintegrasi</div>
-            </div>
-            <div class="border-r border-slate-100 last:border-none">
-                <div class="text-2xl sm:text-3xl font-black text-brand-600">Computational</div>
-                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Pola Berpikir Logis & Analitis</div>
-            </div>
-            <div class="border-r border-slate-100 last:border-none">
-                <div class="text-2xl sm:text-3xl font-black text-brand-600">Etika AI</div>
-                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Literasi Digital & Tanggung Jawab</div>
-            </div>
-            <div>
-                <div class="text-2xl sm:text-3xl font-black text-brand-600">Modul Guru</div>
-                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Pelatihan & Panduan Pengajaran</div>
-            </div>
+    <section class="container" aria-label="Progres belajarku">
+      <div class="progress-card">
+        <div>
+          <h3>Langkahmu, catatanmu</h3>
+          <p id="progress-summary">Progres hanya terlihat di halaman ini selama kamu membukanya.</p>
         </div>
+        <div class="progress-right">
+          <span class="progress-count" id="progress-count" aria-live="polite">0 selesai</span>
+          <label class="progress-setting"><input id="save-progress" type="checkbox"> Simpan progres di perangkat ini</label>
+          <button class="button button-subtle" id="clear-progress" type="button">Hapus progres</button>
+        </div>
+        <div class="privacy-hint" id="storage-message">Tidak perlu akun. Jika diaktifkan, progres tersimpan di browser pada perangkat ini saja—tidak dikirim ke mana pun.</div>
+      </div>
     </section>
 
-    <!-- Main Content Body -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        
-        <!-- Section: Tentang KKA -->
-        <section id="tentang" class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-7 space-y-6">
-                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-md">Latar Belakang Program</span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                    Mengapa Kurikulum Koding & Kecerdasan Artifisial Dihadirkan?
-                </h3>
-                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
-                    Perubahan lanskap global menuntut penguasaan teknologi bukan lagi sebagai pilihan, melainkan kecakapan hidup dasar. Kementerian Pendidikan Dasar dan Menengah merumuskan kurikulum ini agar peserta didik tidak hanya menjadi <strong>pengguna (konsumen) teknologi</strong>, melainkan beralih menjadi <strong>pencipta dan inovator</strong> masa depan.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div class="flex items-start space-x-3">
-                        <div class="text-brand-600 mt-1"><i class="fa-solid fa-circle-check"></i></div>
-                        <p class="text-xs sm:text-sm text-slate-700 font-medium">Mengasah kemampuan pemecahan masalah kompleks (Problem Solving).</p>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="text-brand-600 mt-1"><i class="fa-solid fa-circle-check"></i></div>
-                        <p class="text-xs sm:text-sm text-slate-700 font-medium">Memahami prinsip dasar logika algoritma dan pemodelan data.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="lg:col-span-5 bg-gradient-to-br from-indigo-50 to-brand-50 p-6 sm:p-8 rounded-2xl border border-indigo-100 space-y-4">
-                <h4 class="font-bold text-brand-900 text-lg flex items-center space-x-2">
-                    <i class="fa-solid fa-bullseye text-brand-600"></i>
-                    <span>Sasaran Utama</span>
-                </h4>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Penerapan kurikulum dirancang secara bertahap (inklusif dan adaptif) agar dapat diterapkan dengan baik di berbagai wilayah tanpa memandang disparitas fasilitas awal.
-                </p>
-                <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" class="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-800">
-                    <span>Baca dokumen kerangka lengkap</span>
-                    <i class="fa-solid fa-arrow-right ml-1"></i>
-                </a>
-            </div>
-        </section>
-
-        <!-- Section: Jenjang Pendidikan -->
-        <section id="jenjang" class="space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Peta Jalan Belajar</span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Penerapan Berdasarkan Jenjang Pendidikan</h3>
-                <p class="text-slate-500 text-sm">Materi disesuaikan secara psikologis dan kognitif dengan tingkat tumbuh kembang peserta didik.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- SD -->
-                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg">
-                            <i class="fa-solid fa-shapes"></i>
-                        </div>
-                        <h4 class="font-bold text-lg text-slate-900">Pendidikan Dasar (SD)</h4>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            Fokus pada pengenalan pola, logika dasar berurutan, dan pemecahan masalah melalui permainan edukatif (*unplugged coding* dan visual block programming).
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-semibold text-brand-600">
-                        Fase A, B, & C (Kelas 1 - 6)
-                    </div>
-                </div>
-
-                <!-- SMP -->
-                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <h4 class="font-bold text-lg text-slate-900">Pendidikan Menengah Pertama (SMP)</h4>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            Mulai masuk ke struktur pemrograman terarah, logika kondisional, fungsi perulangan, serta pengenalan dasar pengolahan data dan etika digital.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-semibold text-brand-600">
-                        Fase D (Kelas 7 - 9)
-                    </div>
-                </div>
-
-                <!-- SMA/SMK -->
-                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg">
-                            <i class="fa-solid fa-microchip"></i>
-                        </div>
-                        <h4 class="font-bold text-lg text-slate-900">Pendidikan Menengah Atas (SMA/SMK)</h4>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            Pengembangan proyek koding riil, pemahaman prinsip kerja Kecerdasan Artifisial (Machine Learning dasar), serta penerapan etika pemanfaatan AI yang bertanggung jawab.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-semibold text-brand-600">
-                        Fase E & F (Kelas 10 - 12)
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Pilar Utama KKA -->
-        <section id="pilar" class="bg-slate-900 text-white p-8 sm:p-12 rounded-3xl space-y-8">
-            <div class="max-w-2xl space-y-3">
-                <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Komponen Inti</span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">4 Pilar Utama Kurikulum Koding & KA</h3>
-                <p class="text-slate-400 text-sm">Kerangka isi materi dirancang secara holistik untuk memastikan kompetensi siswa utuh secara teknis maupun moral.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-3">
-                    <div class="text-brand-400 text-xl"><i class="fa-solid fa-brain"></i></div>
-                    <h4 class="font-bold text-base">Berpikir Komputasional</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">Kemampuan mengurai masalah besar menjadi bagian kecil yang terstruktur dan dapat diselesaikan dengan algoritma.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-3">
-                    <div class="text-brand-400 text-xl"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h4 class="font-bold text-base">Koding & Pemrograman</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">Praktik penulisan kode terstruktur baik menggunakan blok visual maupun bahasa pemrograman teks standar.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-3">
-                    <div class="text-brand-400 text-xl"><i class="fa-solid fa-robot"></i></div>
-                    <h4 class="font-bold text-base">Kecerdasan Artifisial (AI)</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">Pengenalan cara kerja sistem cerdas, pelatihan data sederhana, dan pemanfaatan asisten digital secara produktif.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-3">
-                    <div class="text-brand-400 text-xl"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <h4 class="font-bold text-base">Etika & Keamanan Digital</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed">Pemahaman privasi data, Hak Atas Kekayaan Intelektual, serta dampak sosial penggunaan teknologi canggih.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Dokumen Resmi & Panduan -->
-        <section id="dokumen" class="space-y-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                <div class="space-y-2">
-                    <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Pusat Unduhan</span>
-                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Dokumen & Panduan Kurikulum Resmi</h3>
-                    <p class="text-slate-500 text-sm">Unduh dokumen kebijakan, naskah akademik, dan modul pelatihan untuk pendidik.</p>
-                </div>
-                <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center space-x-1">
-                    <span>Lihat direktori lengkap di web resmi</span>
-                    <i class="fa-solid fa-external-link-alt ml-1"></i>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Doc 1 -->
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between space-y-6">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="p-3 bg-red-50 text-red-600 rounded-2xl"><i class="fa-solid fa-file-pdf text-xl"></i></span>
-                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded-md font-semibold">PDF Resmi</span>
-                        </div>
-                        <h4 class="font-bold text-slate-900 text-base">Kerangka Dasar & Naskah Akademik KKA</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Dokumen rujukan utama landasan filosofis, sosiologis, dan pedagogis kurikulum.</p>
-                    </div>
-                    <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" class="w-full text-center bg-slate-50 hover:bg-brand-50 text-slate-700 hover:text-brand-600 font-semibold py-2.5 rounded-xl text-xs transition border border-slate-200">
-                        Unduh / Lihat Dokumen <i class="fa-solid fa-download ml-1"></i>
-                    </a>
-                </div>
-
-                <!-- Doc 2 -->
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between space-y-6">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="p-3 bg-red-50 text-red-600 rounded-2xl"><i class="fa-solid fa-file-pdf text-xl"></i></span>
-                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded-md font-semibold">PDF Resmi</span>
-                        </div>
-                        <h4 class="font-bold text-slate-900 text-base">Panduan Implementasi Guru & Modul Ajar</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Panduan praktis merancang RPP/Modul ajar interaktif koding di ruang kelas.</p>
-                    </div>
-                    <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" class="w-full text-center bg-slate-50 hover:bg-brand-50 text-slate-700 hover:text-brand-600 font-semibold py-2.5 rounded-xl text-xs transition border border-slate-200">
-                        Unduh / Lihat Dokumen <i class="fa-solid fa-download ml-1"></i>
-                    </a>
-                </div>
-
-                <!-- Doc 3 -->
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between space-y-6">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="p-3 bg-red-50 text-red-600 rounded-2xl"><i class="fa-solid fa-file-pdf text-xl"></i></span>
-                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded-md font-semibold">PDF Resmi</span>
-                        </div>
-                        <h4 class="font-bold text-slate-900 text-base">Capaian Pembelajaran (CP) Koding & KA</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Standar kompetensi lulusan per fase belajar dari tingkat dasar hingga menengah.</p>
-                    </div>
-                    <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" class="w-full text-center bg-slate-50 hover:bg-brand-50 text-slate-700 hover:text-brand-600 font-semibold py-2.5 rounded-xl text-xs transition border border-slate-200">
-                        Unduh / Lihat Dokumen <i class="fa-solid fa-download ml-1"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: FAQ Komprehensif -->
-        <section id="faq" class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-100 space-y-8">
-            <div class="max-w-2xl space-y-2">
-                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Informasi Tanya Jawab</span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Pertanyaan Umum Seputar Kebijakan</h3>
-                <p class="text-slate-500 text-sm">Jawaban atas pertanyaan krusial yang sering diajukan oleh satuan pendidikan, guru, dan orang tua.</p>
-            </div>
-
-            <div class="space-y-4">
-                <details class="group p-5 bg-slate-50 rounded-2xl cursor-pointer border border-slate-100">
-                    <summary class="font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
-                        <span>1. Apakah mata pelajaran Koding & Kecerdasan Artifisial bersifat wajib di seluruh sekolah?</span>
-                        <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition"></i>
-                    </summary>
-                    <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-                        Program ini dirancang secara terintegrasi ke dalam struktur kurikulum nasional dengan pendekatan bertahap. Kebijakan operasional dan teknis penerapannya disesuaikan dengan kesiapan fasilitas serta pelatihan guru di masing-masing satuan pendidikan sebagaimana diatur dalam pedoman resmi Kemendikdasmen.
-                    </p>
-                </details>
-
-                <details class="group p-5 bg-slate-50 rounded-2xl cursor-pointer border border-slate-100">
-                    <summary class="font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
-                        <span>2. Apakah sekolah yang minim fasilitas komputer tetap bisa melaksanakan kurikulum ini?</span>
-                        <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition"></i>
-                    </summary>
-                    <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-                        Sangat bisa. Pemerintah menyediakan panduan metode <em>unplugged coding</em> (koding tanpa perangkat komputer) yang mengajarkan logika komputasional, pola pemecahan masalah, dan algoritma menggunakan media kertas, permainan fisik, atau kartu logika interaktif.
-                    </p>
-                </details>
-
-                <details class="group p-5 bg-slate-50 rounded-2xl cursor-pointer border border-slate-100">
-                    <summary class="font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
-                        <span>3. Bagaimana dukungan pelatihan bagi guru yang belum memiliki latar belakang IT?</span>
-                        <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition"></i>
-                    </summary>
-                    <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-                        Kemendikdasmen menyediakan modul pelatihan mandiri, webinar bimbingan teknis, serta kolaborasi komunitas penggerak melalui platform digital resmi kementerian agar seluruh pendidik merasa terbimbing dan percaya diri.
-                    </p>
-                </details>
-
-                <details class="group p-5 bg-slate-50 rounded-2xl cursor-pointer border border-slate-100">
-                    <summary class="font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
-                        <span>4. Di mana saya dapat memantau pembaruan regulasi resmi terbaru?</span>
-                        <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition"></i>
-                    </summary>
-                    <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
-                        Semua rilis dokumen hukum, draf kurikulum, dan surat edaran resmi hanya dikeluarkan melalui portal resmi di laman <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" class="text-brand-600 underline font-semibold">kurikulum.kemendikdasmen.go.id/koding-ka</a>.
-                    </p>
-                </details>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white border-t border-slate-800 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            <div class="space-y-3">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-brand-600 text-white p-2 rounded-xl">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <span class="font-bold text-lg">Kemendikdasmen</span>
-                </div>
-                <p class="text-xs text-slate-400 leading-relaxed">Pusat Informasi Resmi Kurikulum Koding & Kecerdasan Artifisial Republik Indonesia.</p>
-            </div>
-            <div class="text-center text-xs text-slate-400">
-                <p>&copy; 2026 Kementerian Pendidikan Dasar dan Menengah.</p>
-                <p class="mt-1">Hak Cipta Dilindungi Undang-Undang.</p>
-            </div>
-            <div class="flex justify-md-end justify-center space-x-4">
-                <a href="https://kurikulum.kemendikdasmen.go.id/koding-ka" target="_blank" rel="noopener noreferrer" 
-                   class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition">
-                    Kunjungi Situs Resmi Utama <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
-                </a>
-            </div>
+    <section class="section journey-section" id="peta-belajar">
+      <div class="container">
+        <div class="journey-top">
+          <div class="section-heading">
+            <span class="eyebrow">Peta perjalanan · 16 sesi</span>
+            <h2>Dari instruksi sederhana ke ide yang teruji.</h2>
+            <p>Urutan ini mengikuti rancangan belajar KKA SMA yang fleksibel. Setiap sesi kelas dirancang sekitar 90 menit; kartu bisa dijelajahi mandiri sesuai waktu dan kebutuhanmu.</p>
+          </div>
+          <a class="button button-subtle" href="../docs/kka-sma/silabus-dan-pembelajaran.md">Buka rancangan lengkap ↗</a>
         </div>
-    </footer>
+        <div class="journey-list" id="module-list" aria-label="Modul pembelajaran"></div>
+      </div>
+    </section>
 
+    <section class="section" id="pelajaran">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Pelajaran pertama · 15–20 menit</span>
+          <h2>Bisakah kamu memberi robot instruksi yang jelas?</h2>
+          <p>Coba urutkan langkah untuk mencapai bintang. Robot hanya melakukan persis yang kamu perintahkan—ini awal dari berpikir algoritmis.</p>
+        </div>
+        <div class="lesson-layout">
+          <div class="lesson-intro">
+            <span class="eyebrow">Tantangan 01</span>
+            <h3>Langkah kecil. Tujuan jelas.</h3>
+            <p>Algoritma adalah urutan instruksi yang jelas untuk menyelesaikan tugas. Robot tidak bisa menebak maksudmu—jadi kita perlu menguji setiap langkah.</p>
+            <div class="lesson-goal"><strong>Misi:</strong> bantu robot dari kotak hijau menuju bintang. Tambahkan perintah satu per satu, lalu jalankan.</div>
+          </div>
+          <div class="robot-lab">
+            <div class="lab-head">
+              <div><h3>Lab robot grid</h3><p>Mulai di kiri bawah · tujuan di kanan atas</p></div>
+              <span class="lab-badge">Bisa pakai keyboard</span>
+            </div>
+            <div class="robot-board" id="robot-board" role="img" aria-label="Papan 4 kali 4. Robot mulai di kiri bawah dan bintang tujuan di kanan atas."></div>
+            <div class="commands" aria-label="Perintah untuk robot">
+              <button class="command-button" type="button" data-command="forward">↑ Maju</button>
+              <button class="command-button" type="button" data-command="right">↻ Putar kanan</button>
+              <button class="command-button" type="button" data-command="left">↺ Putar kiri</button>
+            </div>
+            <p class="sequence" id="command-sequence" aria-label="Urutan perintah">Urutanmu: (belum ada perintah)</p>
+            <div class="lab-actions">
+              <button class="button button-primary" id="run-robot" type="button">Jalankan ▶</button>
+              <button class="button button-subtle" id="undo-command" type="button">Urungkan</button>
+              <button class="button button-subtle" id="reset-robot" type="button">Mulai ulang</button>
+            </div>
+            <p class="lab-feedback" id="robot-feedback" aria-live="polite">Pilih perintah, lalu jalankan. Petunjuk: robot mulai menghadap ke atas.</p>
+            <p class="lab-hint">Tantang diri: temukan rute dengan langkah sesedikit mungkin.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quiz-section" aria-labelledby="quiz-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Cek pemahaman</span>
+          <h2 id="quiz-title">Tiga pertanyaan, tanpa nilai.</h2>
+          <p>Pilih jawaban untuk mendapat umpan balik langsung. Salah menjawab itu bagian dari belajar—coba pikirkan lagi.</p>
+        </div>
+        <div class="quiz-grid" id="quiz-grid"></div>
+      </div>
+    </section>
+
+    <section class="container" aria-label="Aktivitas tanpa perangkat">
+      <div class="offline-card">
+        <div>
+          <span class="eyebrow">Tidak ada perangkat? Tetap bisa belajar.</span>
+          <h3>Jadilah robot dan penyusun instruksi.</h3>
+          <p>Siapkan lima kartu angka di kertas. Satu orang memberi instruksi untuk mengurutkannya, satu orang mengikuti instruksi persis. Tukar peran, lalu cari bagian yang masih ambigu.</p>
+          <div class="offline-steps"><span>Susun kartu</span><span>Tulis langkah</span><span>Uji kasus lain</span><span>Perbaiki</span></div>
+        </div>
+        <a class="button button-primary" href="#tanya-jawab">Lihat panduan aman ↓</a>
+      </div>
+    </section>
+
+    <section class="section parent-section" id="untuk-orang-tua">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Catatan untuk keluarga</span>
+          <h2>Teknologi baru lebih mudah dipahami saat dibicarakan bersama.</h2>
+          <p>Koding melatih cara menyusun instruksi. AI membantu mengolah pola atau menghasilkan keluaran tertentu—tetapi tidak memahami dunia seperti manusia dan bisa keliru.</p>
+        </div>
+        <div class="parent-grid">
+          <article class="parent-card"><span class="icon" aria-hidden="true">🧭</span><h3>Tanya prosesnya</h3><p>Ajak anak menceritakan tujuan, langkah yang dicoba, bukti yang diamati, dan bagian yang ingin diperbaiki.</p></article>
+          <article class="parent-card"><span class="icon" aria-hidden="true">🔎</span><h3>Periksa, jangan langsung percaya</h3><p>Jawaban AI dapat salah, bias, atau mengarang sumber. Periksa informasi penting dengan sumber yang dapat dipercaya.</p></article>
+          <article class="parent-card"><span class="icon" aria-hidden="true">🌱</span><h3>Utamakan keselamatan</h3><p>Jangan masukkan nama lengkap, foto, lokasi, kata sandi, atau data pribadi ke layanan AI. Ikuti persetujuan dan aturan sekolah.</p></article>
+        </div>
+        <div class="privacy-banner"><strong>Privasi di ruang belajar ini:</strong> tidak ada login, pelacakan, analitik, maupun koneksi ke layanan AI. Aktivitas robot berjalan di browser; progres opsional hanya disimpan lokal di perangkatmu.</div>
+      </div>
+    </section>
+
+    <section class="section" id="tanya-jawab">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Tanya jawab</span>
+          <h2>Hal yang mungkin kamu ingin tahu.</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary>Apakah saya harus bisa coding sebelum mulai?</summary><p>Tidak. Kegiatan pertama memakai instruksi sederhana dan bisa dilakukan tanpa mengetik kode atau memasang aplikasi.</p></details>
+          <details><summary>Apakah saya perlu memakai AI untuk belajar?</summary><p>Tidak. AI bukan syarat. Kegiatan inti dapat dilakukan tanpa AI, internet, atau akun; yang utama adalah memahami ide dan menguji hasilnya.</p></details>
+          <details><summary>Apakah rancangan ini kurikulum resmi pemerintah?</summary><p>Bukan. Ini bahan belajar adaptif untuk membantu persiapan dan belajar mandiri, bukan dokumen resmi atau pemetaan kurikulum pemerintah. Sekolah tetap perlu menyesuaikan materi dan kebijakan yang berlaku.</p></details>
+          <details><summary>Bagaimana progres belajar disimpan?</summary><p>Secara bawaan progres hanya ada selama halaman terbuka. Jika kamu mengaktifkan opsi simpan, browser menyimpannya secara lokal di perangkat ini. Progres tidak dikirim ke server; kamu bisa menghapusnya kapan saja.</p></details>
+          <details><summary>Apa bedanya koding, machine learning, dan AI generatif?</summary><p>Koding menyusun instruksi yang dijalankan komputer. Machine learning mempelajari pola dari contoh data. AI generatif menghasilkan konten seperti teks atau gambar berdasarkan pola—hasilnya tetap perlu diperiksa.</p></details>
+        </div>
+        <div class="resource-links">
+          <a href="../docs/kka-sma/silabus-dan-pembelajaran.md">Silabus dan panduan sesi SMA ↗</a>
+          <a href="../docs/kka-sma/proyek-asesmen-dan-pustaka.md">Proyek, asesmen, dan pustaka ↗</a>
+        </div>
+        <p class="small-note">Kedua dokumen adalah rancangan adaptif/draf, bukan kurikulum resmi. Periksa kebijakan dan kurikulum lokal yang berlaku sebelum digunakan di kelas.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div><div class="footer-brand">Ruang KKA · SMA</div><p>Belajar dengan rasa ingin tahu, berpikir kritis, dan menjaga privasi.</p></div>
+      <div><p>Materi belajar independen berbasis rancangan adaptif. Bukan situs atau kanal resmi pemerintah.</p><p>© <span id="year"></span> · Dibuat untuk belajar bersama.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const modules = [
+        ["Orientasi & instruksi jelas", "Menyusun langkah, menemukan ambiguitas, dan membuat kesepakatan aman.", "15–20 menit mandiri"],
+        ["Berpikir komputasional", "Memecah masalah, mencari pola, dan menentukan informasi penting.", "20 menit mandiri"],
+        ["Variabel & masukan-keluaran", "Menelusuri nilai dan melihat bagaimana program menerima masukan.", "20 menit mandiri"],
+        ["Kondisi & keputusan", "Membuat aturan jika/maka dan mencoba kasus batas.", "20 menit mandiri"],
+        ["Pengulangan", "Mengenali pola langkah yang berulang dan kapan harus berhenti.", "20 menit mandiri"],
+        ["Fungsi & modularitas", "Membagi solusi ke prosedur kecil yang dapat digunakan kembali.", "20 menit mandiri"],
+        ["Data & representasi", "Membaca tabel kecil serta membahas kualitas dan minimisasi data.", "20 menit mandiri"],
+        ["Debugging & tinjauan tengah", "Menelusuri langkah, menemukan kesalahan, lalu memperbaiki.", "25 menit mandiri"],
+        ["Aturan, ML, dan AI generatif", "Membandingkan sistem berdasarkan cara kerja dan keluarannya.", "20 menit mandiri"],
+        ["Bias & generalisasi", "Menguji contoh beragam dan mencatat batas sebuah aturan/model.", "20 menit mandiri"],
+        ["Verifikasi keluaran AI", "Memeriksa klaim dengan kasus uji dan sumber yang bisa ditelusuri.", "20 menit mandiri"],
+        ["Prompting & iterasi", "Membuat instruksi aman, mengecek keluaran, dan memperbaikinya.", "20 menit mandiri"],
+        ["Etika, privasi & dampak", "Mengenali risiko dan memilih alternatif yang lebih aman.", "20 menit mandiri"],
+        ["Capstone: rancang & bangun", "Merancang prototipe kecil yang aman, dengan atau tanpa perangkat.", "Sesi proyek"],
+        ["Capstone: uji & revisi", "Mencoba kasus normal, batas, dan gagal; mendokumentasikan revisi.", "Sesi proyek"],
+        ["Demo & refleksi", "Menjelaskan cara kerja, hasil uji, batas, dan pembelajaran.", "Sesi proyek"]
+      ];
+      const storageKey = "ruang-kka-sma-progress-v1";
+      const progress = { lesson: false, modules: new Set(), quiz: new Set() };
+      const board = document.querySelector("#robot-board");
+      const feedback = document.querySelector("#robot-feedback");
+      const sequenceOutput = document.querySelector("#command-sequence");
+      const saveToggle = document.querySelector("#save-progress");
+      const storageMessage = document.querySelector("#storage-message");
+      const commands = [];
+      const obstacles = new Set(["1,1", "2,2"]);
+      let robot = { row: 3, col: 0, direction: 0 };
+      let isRunning = false;
+      const directions = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+      const arrows = ["↑", "→", "↓", "←"];
+
+      const moduleList = document.querySelector("#module-list");
+      modules.forEach(([title, detail, time], index) => {
+        const card = document.createElement("article");
+        card.className = "module-card";
+        card.innerHTML = `<span class="module-number">${String(index + 1).padStart(2, "0")}</span><h3>${title}</h3><p>${detail}</p><div class="module-meta">Sesi kelas 90 menit · ${time}</div><button class="module-done" type="button" data-module="${index + 1}" aria-pressed="false">Tandai selesai</button>`;
+        moduleList.append(card);
+      });
+
+      function renderBoard() {
+        board.replaceChildren();
+        for (let row = 0; row < 4; row += 1) {
+          for (let col = 0; col < 4; col += 1) {
+            const cell = document.createElement("div");
+            const key = `${row},${col}`;
+            cell.className = "robot-cell";
+            if (row === 3 && col === 0) cell.classList.add("start");
+            if (row === 0 && col === 3) cell.classList.add("finish");
+            if (obstacles.has(key)) cell.classList.add("obstacle");
+            if (robot.row === row && robot.col === col) {
+              const bot = document.createElement("span");
+              bot.className = "bot";
+              bot.textContent = "🤖";
+              bot.style.transform = `rotate(${robot.direction * 90}deg)`;
+              cell.append(bot);
+              cell.setAttribute("aria-label", `Robot di baris ${row + 1}, kolom ${col + 1}, menghadap ${["atas", "kanan", "bawah", "kiri"][robot.direction]}`);
+            } else if (row === 0 && col === 3) {
+              cell.textContent = "★";
+              cell.setAttribute("aria-label", "Tujuan");
+            } else if (obstacles.has(key)) {
+              cell.textContent = "▧";
+              cell.setAttribute("aria-label", "Rintangan");
+            } else {
+              cell.textContent = "·";
+              cell.setAttribute("aria-hidden", "true");
+            }
+            board.append(cell);
+          }
+        }
+      }
+
+      function updateSequence() {
+        const labels = { forward: "MAJU", right: "KANAN", left: "KIRI" };
+        sequenceOutput.textContent = commands.length
+          ? `Urutanmu: ${commands.map(command => labels[command]).join(" → ")}`
+          : "Urutanmu: (belum ada perintah)";
+        document.querySelector("#undo-command").disabled = commands.length === 0 || isRunning;
+      }
+
+      function updateProgress() {
+        const count = Number(progress.lesson) + progress.modules.size + Number(progress.quiz.size === 3);
+        document.querySelector("#progress-count").textContent = `${count} selesai`;
+        document.querySelectorAll(".module-done").forEach(button => {
+          const done = progress.modules.has(Number(button.dataset.module));
+          button.setAttribute("aria-pressed", String(done));
+          button.textContent = done ? "✓ Selesai" : "Tandai selesai";
+        });
+      }
+
+      function readSavedProgress() {
+        try {
+          const saved = localStorage.getItem(storageKey);
+          if (!saved) return;
+          const data = JSON.parse(saved);
+          if (data && data.enabled === true) {
+            saveToggle.checked = true;
+            progress.lesson = data.lesson === true;
+            progress.modules = new Set(Array.isArray(data.modules)
+              ? data.modules.filter(id => Number.isInteger(id) && id >= 1 && id <= modules.length)
+              : []);
+            progress.quiz = new Set(Array.isArray(data.quiz)
+              ? data.quiz.filter(id => Number.isInteger(id) && id >= 1 && id <= quizQuestions.length)
+              : []);
+            storageMessage.textContent = "Progres tersimpan di browser pada perangkat ini saja. Tidak ada data yang dikirim ke server.";
+            progress.quiz.forEach(id => {
+              const question = quizQuestions[id - 1];
+              const card = quizGrid.children[id - 1];
+              if (!question || !card) return;
+              card.querySelectorAll(".quiz-option")[question.answer].setAttribute("aria-pressed", "true");
+              const result = card.querySelector(".quiz-feedback");
+              result.textContent = question.correct;
+              result.classList.add("correct");
+            });
+            updateProgress();
+          }
+        } catch {
+          storageMessage.textContent = "Browser tidak dapat membaca progres tersimpan. Kamu tetap bisa belajar tanpa menyimpan progres.";
+        }
+      }
+
+      function persistProgress() {
+        if (!saveToggle.checked) return;
+        try {
+          localStorage.setItem(storageKey, JSON.stringify({
+            enabled: true,
+            lesson: progress.lesson,
+            modules: [...progress.modules],
+            quiz: [...progress.quiz]
+          }));
+          storageMessage.textContent = "Progres tersimpan lokal di browser perangkat ini saja.";
+        } catch {
+          saveToggle.checked = false;
+          storageMessage.textContent = "Progres tidak dapat disimpan di browser ini. Aktivitas tetap bisa digunakan tanpa menyimpan.";
+        }
+      }
+
+      function markLessonDone() {
+        if (robot.row === 0 && robot.col === 3) {
+          progress.lesson = true;
+          updateProgress();
+          persistProgress();
+        }
+      }
+
+      document.querySelectorAll("[data-audience]").forEach(button => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll("[data-audience]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+          document.querySelectorAll("[data-panel]").forEach(panel => {
+            panel.hidden = panel.dataset.panel !== button.dataset.audience;
+          });
+        });
+      });
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mainNav = document.querySelector("#navigasi");
+      menuToggle.addEventListener("click", () => {
+        const open = menuToggle.getAttribute("aria-expanded") !== "true";
+        menuToggle.setAttribute("aria-expanded", String(open));
+        mainNav.classList.toggle("open", open);
+      });
+      mainNav.addEventListener("click", event => {
+        if (event.target.closest("a")) {
+          mainNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      document.querySelectorAll(".module-done").forEach(button => {
+        button.addEventListener("click", () => {
+          const id = Number(button.dataset.module);
+          if (progress.modules.has(id)) progress.modules.delete(id);
+          else progress.modules.add(id);
+          updateProgress();
+          persistProgress();
+        });
+      });
+
+      document.querySelectorAll(".command-button").forEach(button => {
+        button.addEventListener("click", () => {
+          if (commands.length >= 12 || isRunning) {
+            feedback.textContent = isRunning ? "Robot sedang menjalankan instruksi." : "Batas urutan 12 langkah. Jalankan atau mulai ulang untuk mencoba lagi.";
+            return;
+          }
+          commands.push(button.dataset.command);
+          updateSequence();
+          feedback.textContent = "Perintah ditambahkan. Kamu bisa menambah langkah atau langsung menjalankan.";
+        });
+      });
+      document.querySelector("#undo-command").addEventListener("click", () => {
+        if (!isRunning) {
+          commands.pop();
+          updateSequence();
+          feedback.textContent = "Langkah terakhir diurungkan.";
+        }
+      });
+      document.querySelector("#reset-robot").addEventListener("click", () => {
+        if (isRunning) return;
+        commands.length = 0;
+        robot = { row: 3, col: 0, direction: 0 };
+        updateSequence();
+        renderBoard();
+        feedback.textContent = "Papan diatur ulang. Coba susun rute baru.";
+      });
+      document.querySelector("#run-robot").addEventListener("click", async () => {
+        if (isRunning || commands.length === 0) {
+          feedback.textContent = commands.length ? "Robot sedang bergerak." : "Tambahkan setidaknya satu perintah terlebih dahulu.";
+          return;
+        }
+        isRunning = true;
+        robot = { row: 3, col: 0, direction: 0 };
+        renderBoard();
+        document.querySelectorAll(".command-button, #undo-command, #reset-robot, #run-robot").forEach(button => { button.disabled = true; });
+        feedback.textContent = "Robot mulai dari awal dan menjalankan seluruh urutan...";
+        let hitObstacle = false;
+        for (const command of commands) {
+          await new Promise(resolve => window.setTimeout(resolve, 320));
+          if (command === "right") robot.direction = (robot.direction + 1) % 4;
+          if (command === "left") robot.direction = (robot.direction + 3) % 4;
+          if (command === "forward") {
+            const [dr, dc] = directions[robot.direction];
+            const nextRow = robot.row + dr;
+            const nextCol = robot.col + dc;
+            if (nextRow < 0 || nextRow > 3 || nextCol < 0 || nextCol > 3) {
+              hitObstacle = true;
+              break;
+            }
+            if (obstacles.has(`${nextRow},${nextCol}`)) {
+              hitObstacle = true;
+              break;
+            }
+            robot.row = nextRow;
+            robot.col = nextCol;
+          }
+          renderBoard();
+        }
+        isRunning = false;
+        document.querySelectorAll(".command-button, #undo-command, #reset-robot, #run-robot").forEach(button => { button.disabled = false; });
+        updateSequence();
+        if (robot.row === 0 && robot.col === 3) {
+          feedback.textContent = "Berhasil! Robot menemukan bintang. Kamu sudah menyusun dan menguji algoritma.";
+          markLessonDone();
+        } else if (hitObstacle) {
+          feedback.textContent = "Robot menemui batas atau rintangan. Ubah instruksi dan coba lagi—ini bagian dari debugging.";
+        } else {
+          feedback.textContent = "Robot berhenti di sini. Periksa posisinya, tambahkan perintah, lalu jalankan lagi.";
+        }
+      });
+
+      const quizQuestions = [
+        { prompt: "Apa yang disebut algoritma?", options: ["Urutan instruksi yang jelas", "Nama sebuah perangkat", "Hasil yang selalu benar"], answer: 0, correct: "Tepat! Algoritma adalah langkah-langkah untuk menyelesaikan tugas.", wrong: "Belum tepat. Pikirkan tentang langkah yang perlu diikuti." },
+        { prompt: "Apa yang sebaiknya dilakukan saat instruksi robot tidak berhasil?", options: ["Menyalahkan robot", "Menguji langkah dan memperbaikinya", "Menambah langkah secara acak"], answer: 1, correct: "Ya! Uji, amati, lalu perbaiki satu bagian.", wrong: "Coba lagi: kita perlu mengamati dan menguji, bukan menebak." },
+        { prompt: "Apakah perlu memasukkan data pribadi ke AI untuk belajar KKA?", options: ["Ya, supaya AI mengenal kita", "Hanya nama dan sekolah", "Tidak; gunakan contoh aman dan ikuti aturan sekolah"], answer: 2, correct: "Benar. Jaga data pribadi dan ikuti persetujuan serta aturan sekolah.", wrong: "Pilih cara yang menjaga privasi dan tidak membagikan data pribadi." }
+      ];
+      const quizGrid = document.querySelector("#quiz-grid");
+      quizQuestions.forEach((question, index) => {
+        const card = document.createElement("article");
+        card.className = "quiz-card";
+        const heading = document.createElement("h3");
+        heading.textContent = `${index + 1}. ${question.prompt}`;
+        const options = document.createElement("div");
+        options.className = "quiz-options";
+        const result = document.createElement("p");
+        result.className = "quiz-feedback";
+        result.setAttribute("aria-live", "polite");
+        question.options.forEach((option, optionIndex) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "quiz-option";
+          button.textContent = option;
+          button.setAttribute("aria-pressed", "false");
+          button.addEventListener("click", () => {
+            options.querySelectorAll("button").forEach(item => item.setAttribute("aria-pressed", "false"));
+            button.setAttribute("aria-pressed", "true");
+            const correct = optionIndex === question.answer;
+            result.textContent = correct ? question.correct : question.wrong;
+            result.className = `quiz-feedback ${correct ? "correct" : "incorrect"}`;
+            if (correct) progress.quiz.add(index + 1);
+            else progress.quiz.delete(index + 1);
+            updateProgress();
+            persistProgress();
+          });
+          options.append(button);
+        });
+        card.append(heading, options, result);
+        quizGrid.append(card);
+      });
+
+      saveToggle.addEventListener("change", () => {
+        if (saveToggle.checked) {
+          storageMessage.textContent = "Progres akan disimpan lokal di browser perangkat ini saja.";
+          persistProgress();
+        } else {
+          try {
+            localStorage.removeItem(storageKey);
+            storageMessage.textContent = "Penyimpanan lokal dimatikan. Progres hanya ada selama halaman terbuka.";
+          } catch {
+            storageMessage.textContent = "Browser tidak dapat mengubah penyimpanan. Kamu tetap bisa belajar tanpa menyimpan progres.";
+          }
+        }
+      });
+      document.querySelector("#clear-progress").addEventListener("click", () => {
+        progress.lesson = false;
+        progress.modules.clear();
+        progress.quiz.clear();
+        try {
+          localStorage.removeItem(storageKey);
+          storageMessage.textContent = saveToggle.checked
+            ? "Progres di perangkat ini sudah dihapus. Penyimpanan lokal tetap aktif."
+            : "Progres sesi ini sudah dihapus.";
+        } catch {
+          storageMessage.textContent = "Progres pada halaman ini dihapus, tetapi browser tidak dapat menghapus penyimpanan lokal.";
+        }
+        updateProgress();
+        document.querySelectorAll(".quiz-feedback").forEach(item => { item.textContent = ""; item.className = "quiz-feedback"; });
+        document.querySelectorAll(".quiz-option").forEach(item => item.setAttribute("aria-pressed", "false"));
+      });
+
+      document.querySelector("#year").textContent = new Date().getFullYear();
+      readSavedProgress();
+      renderBoard();
+      updateSequence();
+      updateProgress();
+    })();
+  </script>
 </body>
 </html>
