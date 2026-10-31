@@ -462,9 +462,8 @@
         <a href="#pelajaran">Coba aktivitas</a>
         <a href="#untuk-orang-tua">Untuk orang tua</a>
         <a href="#tanya-jawab">FAQ</a>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Beralih ke mode gelap" aria-pressed="false">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Beralih ke mode gelap" aria-pressed="false" title="Beralih ke mode gelap">
           <span class="theme-icon" id="theme-icon" aria-hidden="true">☾</span>
-          <span id="theme-label">Mode gelap</span>
         </button>
         <span class="theme-status" id="theme-status" role="status" aria-live="polite"></span>
       </nav>
@@ -1250,8 +1249,8 @@
         document.documentElement.dataset.theme = theme;
         themeToggle.setAttribute("aria-pressed", String(isDark));
         themeToggle.setAttribute("aria-label", isDark ? "Beralih ke mode terang" : "Beralih ke mode gelap");
+        themeToggle.setAttribute("title", isDark ? "Beralih ke mode terang" : "Beralih ke mode gelap");
         document.querySelector("#theme-icon").textContent = isDark ? "☀" : "☾";
-        document.querySelector("#theme-label").textContent = isDark ? "Mode terang" : "Mode gelap";
         document.querySelector('meta[name="theme-color"]').content = isDark ? "#101725" : "#fbfaf7";
       }
 
