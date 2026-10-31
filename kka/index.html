@@ -6,6 +6,19 @@
   <meta name="theme-color" content="#111827">
   <meta name="description" content="Ruang belajar Koding dan Kecerdasan Artifisial untuk siswa SMA dan orang tua. Belajar algoritma, mencoba aktivitas interaktif, dan memahami AI dengan aman.">
   <title>Ruang KKA — Belajar Koding & AI untuk SMA</title>
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("ruang-kka-theme-v1");
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark"
+          ? savedTheme
+          : systemPrefersDark ? "dark" : "light";
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -268,6 +281,107 @@
     .footer-inner p { max-width: 620px; margin: 4px 0; font-size: .8rem; }
     .footer-brand { color: white; font-weight: 850; }
 
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --ink: #f0f4fb;
+      --muted: #bec9d9;
+      --paper: #101725;
+      --white: #192334;
+      --line: #39465b;
+      --navy: #09111f;
+      --blue: #aab7ff;
+      --blue-dark: #c1caff;
+      --mint: #a7f3d0;
+      --peach: #ffe0c2;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .3);
+    }
+    html[data-theme="dark"] body { color: var(--ink); background: var(--paper); }
+    html[data-theme="dark"] .site-header { background: #101725ed; border-color: #39465b; }
+    html[data-theme="dark"] .brand small,
+    html[data-theme="dark"] .main-nav a,
+    html[data-theme="dark"] .welcome-inner p,
+    html[data-theme="dark"] .audience-switch button,
+    html[data-theme="dark"] .tip-list li,
+    html[data-theme="dark"] .module-complete-label,
+    html[data-theme="dark"] .progress-track span,
+    html[data-theme="dark"] .progress-setting,
+    html[data-theme="dark"] .sound-setting,
+    html[data-theme="dark"] .journey-legend,
+    html[data-theme="dark"] .module-meta,
+    html[data-theme="dark"] .session-block p,
+    html[data-theme="dark"] .session-feedback { color: #d3dcec !important; }
+    html[data-theme="dark"] .session-project p,
+    html[data-theme="dark"] .session-position,
+    html[data-theme="dark"] .quiz-option,
+    html[data-theme="dark"] .quiz-feedback,
+    html[data-theme="dark"] .offline-card p,
+    html[data-theme="dark"] .faq-list details p,
+    html[data-theme="dark"] .small-note,
+    html[data-theme="dark"] .privacy-hint,
+    html[data-theme="dark"] .sound-note,
+    html[data-theme="dark"] .lab-hint { color: #d3dcec; }
+    html[data-theme="dark"] .tip-list li::before { color: #8ce2b3; }
+    html[data-theme="dark"] .welcome-strip,
+    html[data-theme="dark"] .journey-section,
+    html[data-theme="dark"] .audience-switch { background: #182233; }
+    html[data-theme="dark"] .draft-tag { background: #293858; color: #dbe3ff; }
+    html[data-theme="dark"] .audience-panel,
+    html[data-theme="dark"] .progress-card,
+    html[data-theme="dark"] .module-card,
+    html[data-theme="dark"] .session-detail,
+    html[data-theme="dark"] .session-block,
+    html[data-theme="dark"] .quiz-card,
+    html[data-theme="dark"] .faq-list details,
+    html[data-theme="dark"] .sound-preview,
+    html[data-theme="dark"] .menu-toggle,
+    html[data-theme="dark"] .main-nav { color: var(--ink); background: var(--white); border-color: var(--line); }
+    html[data-theme="dark"] .progress-card { background: #1a2840; border-color: #3a4b70; }
+    html[data-theme="dark"] .progress-count,
+    html[data-theme="dark"] .header-progress,
+    html[data-theme="dark"] .resource-links a { color: #c5ceff; }
+    html[data-theme="dark"] .module-card[aria-current="step"] { border-color: #aab7ff; box-shadow: 0 0 0 3px #aab7ff35; }
+    html[data-theme="dark"] .module-number,
+    html[data-theme="dark"] .session-block h4 span { color: #d5dcff; background: #2b3857; }
+    html[data-theme="dark"] .module-card[aria-current="step"] .module-number { color: #111827; background: #c1caff; }
+    html[data-theme="dark"] .module-card.is-complete .module-number { color: #ddffec; background: #20583f; }
+    html[data-theme="dark"] .module-open,
+    html[data-theme="dark"] .button-subtle,
+    html[data-theme="dark"] .command-button,
+    html[data-theme="dark"] .session-answer { color: #e4e9f4; background: #202c40; border-color: #52617a; }
+    html[data-theme="dark"] .module-open:hover,
+    html[data-theme="dark"] .command-button:hover,
+    html[data-theme="dark"] .session-answer:hover { color: white; background: #303e59; border-color: #aab7ff; }
+    html[data-theme="dark"] .session-objective { background: #182f2c; border-color: #326356; }
+    html[data-theme="dark"] .session-practice { background: #1d2841; border-color: #47578c; }
+    html[data-theme="dark"] .session-answer[aria-pressed="true"] { border-color: #b7c2ff; box-shadow: inset 0 0 0 1px #b7c2ff; }
+    html[data-theme="dark"] .session-answer[aria-pressed="true"][data-correct="true"] { color: #e1ffed; background: #214532; border-color: #7ee0aa; }
+    html[data-theme="dark"] .session-answer[aria-pressed="true"][data-correct="false"] { color: #ffe5d9; background: #503025; border-color: #ffc09e; }
+    html[data-theme="dark"] .session-project { background: #2b2441; border-color: #5b4b83; }
+    html[data-theme="dark"] .session-complete[aria-pressed="true"] { color: #e1ffed; background: #214532; border-color: #7ee0aa; }
+    html[data-theme="dark"] .quiz-option { background: #202c40; border-color: #52617a; }
+    html[data-theme="dark"] .quiz-option[aria-pressed="true"] { color: #e4e9ff; background: #303e59; border-color: #aab7ff; }
+    html[data-theme="dark"] .quiz-feedback.correct { color: #9debbd; }
+    html[data-theme="dark"] .quiz-feedback.incorrect { color: #ffc09e; }
+    html[data-theme="dark"] .offline-card { color: var(--ink); background: #183229; }
+    html[data-theme="dark"] .offline-steps span { color: #e0ffef; background: #244b3a; }
+    html[data-theme="dark"] .parent-card { background: #121e30; border-color: #34445e; }
+    html[data-theme="dark"] .privacy-banner { color: #e1f8eb; background: #142a24; border-color: #43856a; }
+    html[data-theme="dark"] .faq-list summary { color: var(--ink); }
+    html[data-theme="dark"] .quiz-option:focus-visible,
+    html[data-theme="dark"] .session-answer:focus-visible { outline-color: #ffd166; }
+    html[data-theme="dark"] .button-primary { color: #151a2a; background: #b7c2ff; }
+    html[data-theme="dark"] .button-primary:hover { color: #151a2a; background: #d0d7ff; }
+    html[data-theme="dark"] .button-outline { color: #fff; }
+    .theme-toggle {
+      display: inline-flex; min-height: 40px; align-items: center; justify-content: center;
+      gap: 7px; padding: 6px 10px; border: 1px solid var(--line);
+      border-radius: 11px; color: var(--ink); background: var(--white);
+      font-size: .79rem; font-weight: 750;
+    }
+    .theme-toggle:hover { border-color: var(--blue); }
+    .theme-icon { font-size: 1rem; line-height: 1; }
+    .theme-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+
     @media (max-width: 880px) {
       .hero-grid { grid-template-columns: 1fr .8fr; gap: 24px; }
       .hero-art { min-height: 320px; }
@@ -290,6 +404,7 @@
       }
       .main-nav.open { display: flex; }
       .main-nav a { padding: 10px; }
+      .main-nav .theme-toggle { align-self: flex-start; margin: 6px 10px 10px; }
       .hero { padding: 61px 0 52px; }
       .hero-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: clamp(2.8rem, 14vw, 4.3rem); }
@@ -347,6 +462,11 @@
         <a href="#pelajaran">Coba aktivitas</a>
         <a href="#untuk-orang-tua">Untuk orang tua</a>
         <a href="#tanya-jawab">FAQ</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Beralih ke mode gelap" aria-pressed="false">
+          <span class="theme-icon" id="theme-icon" aria-hidden="true">☾</span>
+          <span id="theme-label">Mode gelap</span>
+        </button>
+        <span class="theme-status" id="theme-status" role="status" aria-live="polite"></span>
       </nav>
     </div>
   </header>
@@ -1122,6 +1242,31 @@
 
       const menuToggle = document.querySelector(".menu-toggle");
       const mainNav = document.querySelector("#navigasi");
+      const themeToggle = document.querySelector("#theme-toggle");
+      const themeStatus = document.querySelector("#theme-status");
+
+      function applyTheme(theme) {
+        const isDark = theme === "dark";
+        document.documentElement.dataset.theme = theme;
+        themeToggle.setAttribute("aria-pressed", String(isDark));
+        themeToggle.setAttribute("aria-label", isDark ? "Beralih ke mode terang" : "Beralih ke mode gelap");
+        document.querySelector("#theme-icon").textContent = isDark ? "☀" : "☾";
+        document.querySelector("#theme-label").textContent = isDark ? "Mode terang" : "Mode gelap";
+        document.querySelector('meta[name="theme-color"]').content = isDark ? "#101725" : "#fbfaf7";
+      }
+
+      applyTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+      themeToggle.addEventListener("click", () => {
+        const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        applyTheme(nextTheme);
+        try {
+          localStorage.setItem("ruang-kka-theme-v1", nextTheme);
+          themeStatus.textContent = `Mode ${nextTheme === "dark" ? "gelap" : "terang"} aktif dan tersimpan di browser ini.`;
+        } catch {
+          themeStatus.textContent = `Mode ${nextTheme === "dark" ? "gelap" : "terang"} aktif untuk halaman ini; browser tidak dapat menyimpan pilihan.`;
+        }
+      });
+
       menuToggle.addEventListener("click", () => {
         const open = menuToggle.getAttribute("aria-expanded") !== "true";
         menuToggle.setAttribute("aria-expanded", String(open));
