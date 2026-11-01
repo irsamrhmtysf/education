@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111827">
-  <meta name="description" content="Ruang belajar Koding dan Kecerdasan Artifisial untuk siswa SMA dan orang tua. Belajar algoritma, mencoba aktivitas interaktif, dan memahami AI dengan aman.">
+  <meta name="description" content="Ruang belajar Koding dan Kecerdasan Artifisial untuk siswa SMA. Jelajahi jalur Python, aktivitas interaktif, dan cara belajar AI dengan aman.">
   <title>Ruang KKA — Belajar Koding & AI untuk SMA</title>
   <script>
     (() => {
@@ -143,16 +143,43 @@
     .welcome-inner p { margin: 0; color: #475368; font-size: .9rem; }
     .draft-tag { flex: 0 0 auto; padding: 5px 10px; border-radius: 999px; background: #e3e7ff; color: #3d4db4; font-size: .73rem; font-weight: 800; }
 
-    .audience-layout { display: grid; grid-template-columns: .7fr 1.3fr; align-items: start; gap: 42px; }
-    .audience-switch { display: inline-flex; gap: 4px; padding: 5px; border: 1px solid var(--line); border-radius: 15px; background: #f0efe9; }
-    .audience-switch button { border: 0; border-radius: 10px; padding: .65rem 1rem; color: #596477; background: transparent; font-size: .88rem; font-weight: 750; }
-    .audience-switch button[aria-pressed="true"] { color: var(--on-navy); background: var(--navy); box-shadow: 0 3px 8px #11182724; }
-    .audience-panel { min-height: 238px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
-    .audience-panel h3 { margin: 0 0 10px; font-size: 1.45rem; letter-spacing: -.035em; }
-    .audience-panel p { margin: 0; color: var(--muted); }
-    .tip-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px; margin: 18px 0 0; padding: 0; list-style: none; }
-    .tip-list li { color: #465166; font-size: .9rem; }
-    .tip-list li::before { margin-right: .5rem; color: #14835e; content: "✦"; }
+    .start-card { max-width: 760px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    .start-card h3 { margin: 0 0 10px; font-size: 1.35rem; letter-spacing: -.035em; }
+    .start-card p { margin: 0; color: var(--muted); }
+    .start-tips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .start-tips li { color: #465166; font-size: .9rem; }
+    .start-tips li::before { margin-right: .5rem; color: #14835e; content: "✦"; }
+
+    .python-section { background: var(--white); }
+    .python-progress-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 24px 0; padding: 17px 20px; border: 1px solid #dfe5ff; border-radius: 16px; background: #f0f2ff; }
+    .python-progress-card p { margin: 0; color: #3549c5; font-weight: 800; }
+    .python-progress-card progress { width: min(250px, 100%); height: 11px; accent-color: var(--blue); }
+    .python-progress-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .python-progress-note { width: 100%; color: #59667b; font-size: .78rem; }
+    .python-stages { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .python-stage { padding: 21px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); }
+    .python-stage.is-complete { border-color: #9fdbbd; }
+    .python-stage h3 { margin: 10px 0 7px; font-size: 1.08rem; line-height: 1.35; }
+    .python-stage p { margin: 8px 0; color: var(--muted); font-size: .88rem; }
+    .python-stage code { padding: 2px 5px; border-radius: 5px; color: #263568; background: #edf0ff; font: .85em ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .python-example { overflow-x: auto; margin: 12px 0; padding: 12px; border-radius: 11px; background: #f3f5fa; color: #263147; font: .8rem/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .python-example code { padding: 0; background: transparent; color: inherit; font: inherit; }
+    .python-prompt { font-weight: 750; }
+    .python-level { display: inline-flex; padding: 4px 9px; border-radius: 999px; background: #e8ebff; color: #3549c5; font-size: .7rem; font-weight: 850; letter-spacing: .04em; text-transform: uppercase; }
+    .python-options { display: grid; gap: 8px; margin-top: 13px; }
+    .python-option { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #d9deeb; border-radius: 10px; background: var(--white); color: var(--ink); text-align: left; font-size: .84rem; }
+    .python-option:hover { border-color: #8797f2; background: #f7f8ff; }
+    .python-option[aria-pressed="true"][data-correct="true"] { border-color: #18764d; background: #e8f7ef; }
+    .python-option[aria-pressed="true"][data-correct="false"] { border-color: #9c4a31; background: #fff1eb; }
+    .python-feedback { min-height: 2.8em; margin: 11px 0 0 !important; color: #45536b !important; font-weight: 700; }
+    .python-resources { margin-top: 34px; padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: #fbfcfe; }
+    .python-resources h3 { margin: 0 0 7px; font-size: 1.2rem; }
+    .python-resources > p { margin: 0 0 16px; color: var(--muted); font-size: .88rem; }
+    .python-resource-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .python-resource-list li { padding: 14px; border: 1px solid var(--line); border-radius: 13px; background: var(--white); color: var(--muted); font-size: .82rem; }
+    .python-resource-list a { display: inline-block; margin-bottom: 4px; color: var(--blue-dark); font-weight: 800; }
+    .python-resource-list strong { color: var(--ink); }
+    .python-disclaimer { margin-top: 14px !important; font-size: .8rem !important; }
 
     .progress-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 21px 24px; border: 1px solid #dfe5ff; border-radius: 18px; background: #f0f2ff; }
     .progress-card h3 { margin: 0; font-size: 1rem; }
@@ -261,15 +288,6 @@
     .offline-steps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
     .offline-steps span { padding: 5px 10px; border-radius: 999px; background: #fff; color: #315746; font-size: .75rem; font-weight: 750; }
 
-    .parent-section { color: var(--on-navy); background: var(--navy); }
-    .parent-section .eyebrow { color: var(--mint); }
-    .parent-section .section-heading p { color: #c1cad8; }
-    .parent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-    .parent-card { padding: 22px; border: 1px solid #ffffff1b; border-radius: 17px; background: #ffffff0a; }
-    .parent-card .icon { font-size: 1.35rem; }
-    .parent-card h3 { margin: 10px 0 6px; font-size: 1rem; }
-    .parent-card p { margin: 0; color: #c2ccda; font-size: .83rem; }
-    .privacy-banner { margin-top: 20px; padding: 16px 18px; border: 1px solid #8ce2bd42; border-radius: 14px; color: #d4eee1; background: #1b7b5121; font-size: .86rem; }
 
     .faq-list { display: grid; gap: 10px; max-width: 850px; }
     .faq-list details { padding: 17px 19px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); }
@@ -302,8 +320,7 @@
     html[data-theme="dark"] .brand small,
     html[data-theme="dark"] .main-nav a,
     html[data-theme="dark"] .welcome-inner p,
-    html[data-theme="dark"] .audience-switch button,
-    html[data-theme="dark"] .tip-list li,
+    html[data-theme="dark"] .start-tips li,
     html[data-theme="dark"] .module-complete-label,
     html[data-theme="dark"] .progress-track span,
     html[data-theme="dark"] .progress-setting,
@@ -325,9 +342,11 @@
     html[data-theme="dark"] .tip-list li::before { color: #8ce2b3; }
     html[data-theme="dark"] .welcome-strip,
     html[data-theme="dark"] .journey-section,
-    html[data-theme="dark"] .audience-switch { background: #182233; }
+    html[data-theme="dark"] .python-resources { background: #182233; }
     html[data-theme="dark"] .draft-tag { background: #293858; color: #dbe3ff; }
-    html[data-theme="dark"] .audience-panel,
+    html[data-theme="dark"] .start-card,
+    html[data-theme="dark"] .python-stage,
+    html[data-theme="dark"] .python-resource-list li,
     html[data-theme="dark"] .progress-card,
     html[data-theme="dark"] .module-card,
     html[data-theme="dark"] .session-detail,
@@ -338,9 +357,23 @@
     html[data-theme="dark"] .menu-toggle,
     html[data-theme="dark"] .main-nav { color: var(--ink); background: var(--white); border-color: var(--line); }
     html[data-theme="dark"] .progress-card { background: #1a2840; border-color: #3a4b70; }
+    html[data-theme="dark"] .python-progress-card { background: #1a2840; border-color: #3a4b70; }
+    html[data-theme="dark"] .python-progress-card p { color: #c5ceff; }
+    html[data-theme="dark"] .python-progress-note { color: #d3dcec; }
     html[data-theme="dark"] .progress-count,
     html[data-theme="dark"] .header-progress,
-    html[data-theme="dark"] .resource-links a { color: #c5ceff; }
+    html[data-theme="dark"] .resource-links a,
+    html[data-theme="dark"] .python-resource-list a { color: #c5ceff; }
+    html[data-theme="dark"] .python-stage code { color: #d5dcff; background: #2b3857; }
+    html[data-theme="dark"] .python-example { color: #e4e9f4; background: #121c2c; }
+    html[data-theme="dark"] .python-example code { color: inherit; background: transparent; }
+    html[data-theme="dark"] .python-level { color: #d5dcff; background: #2b3857; }
+    html[data-theme="dark"] .python-option { color: #e4e9f4; background: #202c40; border-color: #52617a; }
+    html[data-theme="dark"] .python-option:hover { color: white; background: #303e59; border-color: #aab7ff; }
+    html[data-theme="dark"] .python-option[aria-pressed="true"][data-correct="true"] { color: #e1ffed; background: #214532; border-color: #7ee0aa; }
+    html[data-theme="dark"] .python-option[aria-pressed="true"][data-correct="false"] { color: #ffe5d9; background: #503025; border-color: #ffc09e; }
+    html[data-theme="dark"] .python-feedback { color: #d3dcec !important; }
+    html[data-theme="dark"] .python-stage.is-complete { border-color: #7ee0aa; }
     html[data-theme="dark"] .module-card[aria-current="step"] { border-color: #aab7ff; box-shadow: 0 0 0 3px #aab7ff35; }
     html[data-theme="dark"] .module-number,
     html[data-theme="dark"] .session-block h4 span { color: #d5dcff; background: #2b3857; }
@@ -366,8 +399,6 @@
     html[data-theme="dark"] .quiz-feedback.incorrect { color: #ffc09e; }
     html[data-theme="dark"] .offline-card { color: var(--ink); background: #183229; }
     html[data-theme="dark"] .offline-steps span { color: #e0ffef; background: #244b3a; }
-    html[data-theme="dark"] .parent-card { background: #121e30; border-color: #34445e; }
-    html[data-theme="dark"] .privacy-banner { color: #e1f8eb; background: #142a24; border-color: #43856a; }
     html[data-theme="dark"] .faq-list summary { color: var(--ink); }
     html[data-theme="dark"] .quiz-option:focus-visible,
     html[data-theme="dark"] .session-answer:focus-visible { outline-color: #ffd166; }
@@ -421,16 +452,16 @@
       .hero-art { width: min(100% - 10px, 430px); min-height: auto; margin: 10px auto 4px; }
       .mini-board { max-width: 230px; }
       .welcome-inner { align-items: start; flex-direction: column; }
-      .audience-layout { grid-template-columns: 1fr; gap: 18px; }
-      .audience-panel { min-height: 0; padding: 23px; }
-      .tip-list { grid-template-columns: 1fr; }
+      .start-card { padding: 23px; }
+      .start-tips { grid-template-columns: 1fr; }
       .journey-top { align-items: start; flex-direction: column; }
       .journey-list { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .module-card { min-height: 215px; padding: 14px; }
       .module-card p { min-height: 65px; }
       .robot-lab { padding: 19px 13px; }
       .robot-board { gap: 5px; }
-      .quiz-grid, .parent-grid { grid-template-columns: 1fr; }
+      .quiz-grid { grid-template-columns: 1fr; }
+      .python-stages, .python-resource-list { grid-template-columns: 1fr; }
       .offline-card { grid-template-columns: 1fr; padding: 22px; }
       .progress-card { align-items: start; flex-direction: column; }
       .progress-right { align-items: start; flex-direction: column; }
@@ -474,9 +505,9 @@
       </button>
       <nav class="main-nav" id="navigasi" aria-label="Navigasi utama">
         <a href="#cara-belajar">Mulai</a>
+        <a href="#python">Python</a>
         <a href="#peta-belajar">Peta belajar</a>
         <a href="#pelajaran">Coba aktivitas</a>
-        <a href="#untuk-orang-tua">Untuk orang tua</a>
         <a href="#tanya-jawab">FAQ</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Beralih ke mode gelap" aria-pressed="false" title="Beralih ke mode gelap">
           <span class="theme-icon" id="theme-icon" aria-hidden="true">☾</span>
@@ -523,37 +554,53 @@
     </div>
 
     <section class="section" id="cara-belajar">
-      <div class="container audience-layout">
+      <div class="container">
         <div>
           <span class="eyebrow">Pilih jalurmu</span>
           <div class="section-heading">
-            <h2>Belajar dengan cara yang cocok buatmu.</h2>
-            <p>Konten ini dirancang untuk siswa SMA yang ingin bersiap, dan orang tua yang ingin ikut memahami.</p>
-          </div>
-          <div class="audience-switch" role="group" aria-label="Pilih panduan">
-            <button type="button" data-audience="siswa" aria-pressed="true">Saya siswa</button>
-            <button type="button" data-audience="ortu" aria-pressed="false">Saya orang tua</button>
+            <h2>Belajar dengan rasa ingin tahu.</h2>
+            <p>Mulai dari hal yang ingin kamu buat. Pecah jadi langkah kecil, uji idemu, lalu perbaiki saat menemukan hal baru.</p>
           </div>
         </div>
-        <div class="audience-panel" id="panel-siswa" data-panel="siswa">
-          <h3>Mulai dari rasa ingin tahu.</h3>
-          <p>Kamu tidak perlu pernah membuat program sebelumnya. Pilih aktivitas singkat, ikuti rasa penasaran, dan anggap kesalahan sebagai petunjuk untuk mencoba lagi.</p>
-          <ul class="tip-list">
+        <div class="start-card">
+          <h3>Kamu bisa mulai dari nol.</h3>
+          <p>Pilih aktivitas singkat, ikuti rasa penasaran, dan anggap kesalahan sebagai petunjuk untuk mencoba lagi. Belajar bisa dimulai dengan perangkat, atau dengan kertas.</p>
+          <ul class="start-tips">
             <li>Mulai dengan aktivitas robot di bawah.</li>
             <li>Gunakan contoh fiktif, bukan data pribadimu.</li>
             <li>Boleh belajar offline dengan kertas.</li>
             <li>AI boleh dibahas, tapi tidak harus digunakan.</li>
           </ul>
         </div>
-        <div class="audience-panel" id="panel-ortu" data-panel="ortu" hidden>
-          <h3>Dampingi dengan obrolan, bukan jawaban instan.</h3>
-          <p>Tujuan belajar adalah memahami proses berpikir dan memeriksa hasil—bukan mengejar alat terbaru atau mengetik kode paling cepat.</p>
-          <ul class="tip-list">
-            <li>Tanyakan, “Bagaimana kamu tahu langkah itu berhasil?”</li>
-            <li>Rayakan usaha menguji dan memperbaiki.</li>
-            <li>Tak perlu perangkat atau akun untuk mulai.</li>
-            <li>Ikuti aturan sekolah untuk layanan digital.</li>
+      </div>
+    </section>
+
+    <section class="section python-section" id="python" aria-labelledby="python-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Jalur belajar Python · 8 tahap</span>
+          <h2 id="python-title">Dari ide kecil sampai proyekmu sendiri.</h2>
+          <p>Belajar Python selangkah demi selangkah: pahami masalah, tulis kode, amati hasil, dan perbaiki. Tahap lanjutan adalah awal perjalanan yang terus berkembang—bukan janji langsung menjadi ahli.</p>
+        </div>
+        <div class="python-progress-card">
+          <p id="python-progress-label" role="status" aria-live="polite" aria-atomic="true">0 dari 8 tahap selesai</p>
+          <div class="python-progress-controls">
+            <progress id="python-progress" max="8" value="0" aria-label="Progres delapan tahap belajar Python"></progress>
+            <button class="button button-subtle" id="reset-python-progress" type="button">Atur ulang progres Python</button>
+          </div>
+          <span class="python-progress-note" id="python-progress-note">Progres tahap disimpan lokal di browser perangkat ini saja; jawabanmu tidak dikirim ke server.</span>
+        </div>
+        <div class="python-stages" id="python-stages" aria-label="Delapan tahap belajar Python"></div>
+        <div class="python-resources" aria-labelledby="python-resources-title">
+          <h3 id="python-resources-title">Bacaan dan ruang eksplorasi</h3>
+          <p>Pilih satu bacaan sesuai kebutuhanmu; semuanya berbahasa Inggris. Tautan menuju situs luar.</p>
+          <ul class="python-resource-list">
+            <li><a href="https://greenteapress.com/thinkpython/html/index.html" target="_blank" rel="noopener noreferrer">Think Python ↗</a><br><strong>Buku terbuka</strong> dengan pengantar pemikiran komputasional dan konsep Python yang berkembang bertahap.</li>
+            <li><a href="https://automatetheboringstuff.com/3e/chapter0.html" target="_blank" rel="noopener noreferrer">Automate the Boring Stuff with Python, edisi ke-3 ↗</a><br><strong>Belajar sambil membuat hal berguna</strong> lewat contoh otomatisasi pekerjaan sehari-hari.</li>
+            <li><a href="https://openbookproject.net/thinkcs/python/english3e/way_of_the_program.html" target="_blank" rel="noopener noreferrer">How to Think Like a Computer Scientist ↗</a><br><strong>Buku terbuka</strong> yang mengajakmu memahami cara berpikir dan memecahkan masalah lewat program.</li>
+            <li><a href="https://wiki.python.org/python/getting-started/BeginnersGuide/NonProgrammers.html" target="_blank" rel="noopener noreferrer">Python NonProgrammers Guide (wiki lama) ↗</a><br><strong>Rujukan komunitas lama</strong>; beberapa isinya mungkin usang. Coba juga <a href="https://www.python.org/about/gettingstarted/" target="_blank" rel="noopener noreferrer">panduan mulai resmi Python ↗</a> atau dokumentasi yang lebih baru.</li>
           </ul>
+          <p class="python-disclaimer"><strong>Eksplorasi AI:</strong> <a href="https://irsamrhmtysf.github.io/edu/" target="_blank" rel="noopener noreferrer">ruang belajar AI interaktif ↗</a> adalah situs belajar AI mandiri berbasis browser, bukan layanan resmi pemerintah. Demo browser mungkin memerlukan internet, perangkat yang sesuai, atau unduhan model; itu berbeda dari belajar menulis Python.</p>
         </div>
       </div>
     </section>
@@ -682,22 +729,6 @@
           <div class="offline-steps"><span>Susun kartu</span><span>Tulis langkah</span><span>Uji kasus lain</span><span>Perbaiki</span></div>
         </div>
         <a class="button button-primary" href="#tanya-jawab">Lihat panduan aman ↓</a>
-      </div>
-    </section>
-
-    <section class="section parent-section" id="untuk-orang-tua">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Catatan untuk keluarga</span>
-          <h2>Teknologi baru lebih mudah dipahami saat dibicarakan bersama.</h2>
-          <p>Koding melatih cara menyusun instruksi. AI membantu mengolah pola atau menghasilkan keluaran tertentu—tetapi tidak memahami dunia seperti manusia dan bisa keliru.</p>
-        </div>
-        <div class="parent-grid">
-          <article class="parent-card"><span class="icon" aria-hidden="true">🧭</span><h3>Tanya prosesnya</h3><p>Ajak anak menceritakan tujuan, langkah yang dicoba, bukti yang diamati, dan bagian yang ingin diperbaiki.</p></article>
-          <article class="parent-card"><span class="icon" aria-hidden="true">🔎</span><h3>Periksa, jangan langsung percaya</h3><p>Jawaban AI dapat salah, bias, atau mengarang sumber. Periksa informasi penting dengan sumber yang dapat dipercaya.</p></article>
-          <article class="parent-card"><span class="icon" aria-hidden="true">🌱</span><h3>Utamakan keselamatan</h3><p>Jangan masukkan nama lengkap, foto, lokasi, kata sandi, atau data pribadi ke layanan AI. Ikuti persetujuan dan aturan sekolah.</p></article>
-        </div>
-        <div class="privacy-banner"><strong>Privasi di ruang belajar ini:</strong> tidak ada login, pelacakan, analitik, maupun koneksi ke layanan AI. Aktivitas robot berjalan di browser; progres opsional hanya disimpan lokal di perangkatmu.</div>
       </div>
     </section>
 
@@ -962,8 +993,216 @@
           project: "Ajak pendengar memberi satu pertanyaan dan satu saran. Tulis satu langkah berikut yang aman, bermanfaat, dan dapat diuji."
         }
       ];
+      const pythonStages = [
+        {
+          level: "Pemula",
+          title: "Pecah ide jadi algoritma",
+          concept: "Sebelum mengetik kode, jelaskan masalah dan urutkan langkah yang bisa dicoba satu per satu.",
+          prompt: "Kamu ingin membuat program yang menghitung total harga dua barang. Apa langkah awal yang paling membantu?",
+          options: ["Tentukan masukan harga, aturan penjumlahan, dan keluaran total.", "Mulai menulis banyak baris kode tanpa menentukan hasil yang dibutuhkan."],
+          answer: 0,
+          correct: "Tepat! Masukan, proses, dan keluaran membuat masalah lebih mudah dirancang dan diuji.",
+          retry: "Coba pilih langkah yang menjelaskan data masuk, proses, dan hasil yang diharapkan."
+        },
+        {
+          level: "Pemula",
+          title: "Tampilkan teks, variabel, dan tipe data",
+          concept: "Python dapat menampilkan keluaran dengan `print()`. Variabel memberi nama pada nilai seperti teks (`str`) atau bilangan bulat (`int`).",
+          example: 'nama = "Ayu"\nprint("Halo,", nama)',
+          prompt: "Apa yang ditampilkan potongan program ini?",
+          options: ['Halo, Ayu', 'nama, "Halo"'],
+          answer: 0,
+          correct: "Benar! `nama` menyimpan teks Ayu dan `print()` menampilkan salam beserta nilainya.",
+          retry: "Telusuri nilai yang disimpan di `nama`, lalu lihat urutan isi `print()`."
+        },
+        {
+          level: "Pemula",
+          title: "Masukan dan keputusan",
+          concept: "`input()` membaca jawaban sebagai teks. Ubah ke angka dengan `int()` jika ingin membandingkan bilangan, lalu gunakan `if` untuk memilih tindakan.",
+          example: 'umur = int(input("Umur: "))\nif umur >= 17:\n    print("Boleh ikut")',
+          prompt: "Mengapa contoh mengubah hasil `input()` dengan `int()`?",
+          options: ["Agar umur menjadi bilangan yang bisa dibandingkan dengan 17.", "Agar Python otomatis mengetahui semua jawaban dan memilih sendiri."],
+          answer: 0,
+          correct: "Ya. `input()` menghasilkan teks; `int()` mengubah teks angka menjadi bilangan bulat untuk perbandingan.",
+          retry: "Ingat: hasil awal `input()` berupa teks, sedangkan kondisi ini membandingkan bilangan."
+        },
+        {
+          level: "Menengah",
+          title: "Ulangi pekerjaan dengan loop",
+          concept: "`for` menjalankan langkah untuk setiap nilai. Batas akhir `range()` tidak ikut dicetak.",
+          example: "for nomor in range(1, 4):\n    print(nomor)",
+          prompt: "Angka apa yang muncul, berurutan?",
+          options: ["1, lalu 2, lalu 3.", "1, lalu 2, lalu 3, lalu 4."],
+          answer: 0,
+          correct: "Tepat! `range(1, 4)` berhenti sebelum angka 4.",
+          retry: "Periksa batas akhir `range()`: angka setelah koma tidak ikut masuk."
+        },
+        {
+          level: "Menengah",
+          title: "Kelompokkan langkah dengan fungsi",
+          concept: "Fungsi memberi nama pada tugas. Parameter menerima nilai dan `return` mengirimkan hasil agar bagian lain dapat memakainya.",
+          example: "def luas(panjang, lebar):\n    return panjang * lebar",
+          prompt: "Apa hasil dari `luas(3, 4)`?",
+          options: ["12, karena fungsi mengalikan kedua nilai.", "34, karena dua nilai digabung menjadi teks."],
+          answer: 0,
+          correct: "Benar! Parameter 3 dan 4 dikalikan, lalu `return` memberikan hasil 12.",
+          retry: "Lihat operasi di dalam fungsi: kedua parameter dikalikan, bukan digabung."
+        },
+        {
+          level: "Menengah",
+          title: "Simpan dan olah data dengan list",
+          concept: "List menampung beberapa nilai berurutan. Indeks Python dimulai dari 0, jadi indeks 1 menunjuk nilai kedua.",
+          example: "nilai = [70, 80, 90]",
+          prompt: "Nilai apa yang dibaca oleh `nilai[1]`?",
+          options: ["80, yaitu nilai kedua.", "70, yaitu nilai pertama."],
+          answer: 0,
+          correct: "Ya! Indeks pertama adalah 0, sehingga indeks 1 menunjuk 80.",
+          retry: "Hitung indeks mulai dari 0: 70 berada di indeks 0."
+        },
+        {
+          level: "Lanjutan",
+          title: "Uji kasus batas dan perbaiki bug",
+          concept: "Debugging dimulai dengan membandingkan hasil harapan dan hasil nyata. Kasus tepat di batas sering membantu menemukan kesalahan kondisi.",
+          example: "if poin > 10:\n    print(\"Bonus\")",
+          prompt: "Bonus seharusnya diberikan untuk poin minimal 10. Uji dan perbaikan mana yang tepat?",
+          options: ["Uji poin 10; ubah kondisi menjadi `poin >= 10`.", "Uji hanya poin 20; biarkan kondisi seperti semula."],
+          answer: 0,
+          correct: "Tepat! Nilai 10 mengungkap perbedaan `>` dan `>=`; uji ulang nilai batas setelah memperbaiki.",
+          retry: "Pilih uji yang tepat di batas aturan, bukan hanya nilai yang sudah jelas lebih besar."
+        },
+        {
+          level: "Lanjutan",
+          title: "Proyek mini: pengingat tugas sederhana",
+          concept: "Gabungkan variabel, list, loop, fungsi, dan kondisi untuk membuat alat kecil yang menjawab kebutuhan nyata.",
+          project: "Simpan beberapa judul tugas fiktif di list. Buat fungsi untuk menampilkan semuanya, lalu gunakan kondisi untuk menandai tugas yang perlu dikerjakan lebih dulu. Uji daftar kosong dan daftar berisi dua tugas.",
+          prompt: "Urutan kerja awal mana yang paling mudah diuji dan dikembangkan?",
+          options: ["Pilih tujuan dan contoh fiktif, buat versi kecil, lalu uji daftar kosong dan berisi tugas.", "Kumpulkan data pribadi teman dan langsung buat sistem besar tanpa pengujian."],
+          answer: 0,
+          correct: "Bagus! Mulai dari lingkup kecil, data contoh, dan kasus uji. Setelah berfungsi, kembangkan idemu dan minta umpan balik.",
+          retry: "Pilih rencana yang punya lingkup kecil, data aman, dan cara memeriksa hasil."
+        }
+      ];
       const storageKey = "ruang-kka-sma-progress-v2";
       const progress = { lesson: false, sessions: new Set(), quiz: new Set() };
+      const pythonStorageKey = "ruang-kka-python-progress-v1";
+      const completedPythonStages = new Set();
+      const pythonStageList = document.querySelector("#python-stages");
+      const pythonProgress = document.querySelector("#python-progress");
+      const pythonProgressLabel = document.querySelector("#python-progress-label");
+      const pythonProgressNote = document.querySelector("#python-progress-note");
+
+      function updatePythonProgress() {
+        const count = completedPythonStages.size;
+        const text = `${count} dari ${pythonStages.length} tahap selesai`;
+        pythonProgress.value = count;
+        pythonProgress.setAttribute("aria-valuetext", text);
+        pythonProgressLabel.textContent = text;
+        pythonStageList.querySelectorAll(".python-stage").forEach(card => {
+          const complete = completedPythonStages.has(Number(card.dataset.stage));
+          card.classList.toggle("is-complete", complete);
+          card.querySelector(".python-stage-status").textContent = complete ? "✓ Tahap selesai" : "";
+        });
+      }
+
+      function persistPythonProgress() {
+        try {
+          localStorage.setItem(pythonStorageKey, JSON.stringify([...completedPythonStages]));
+          pythonProgressNote.textContent = "Progres tahap tersimpan lokal di browser perangkat ini saja; jawabanmu tidak dikirim ke server.";
+        } catch {
+          pythonProgressNote.textContent = "Browser tidak dapat menyimpan progres. Kamu tetap bisa belajar; jawaban tidak dikirim ke server.";
+        }
+      }
+
+      pythonStages.forEach((stage, index) => {
+        const card = document.createElement("article");
+        card.className = "python-stage";
+        card.dataset.stage = String(index + 1);
+        const level = document.createElement("span");
+        level.className = "python-level";
+        level.textContent = stage.level;
+        const heading = document.createElement("h3");
+        heading.textContent = `${index + 1}. ${stage.title}`;
+        const concept = document.createElement("p");
+        concept.textContent = stage.concept;
+        card.append(level, heading, concept);
+        if (stage.example) {
+          const example = document.createElement("pre");
+          const code = document.createElement("code");
+          example.className = "python-example";
+          code.textContent = stage.example;
+          example.append(code);
+          card.append(example);
+        }
+        if (stage.project) {
+          const project = document.createElement("p");
+          project.className = "python-project";
+          project.textContent = stage.project;
+          card.append(project);
+        }
+        const prompt = document.createElement("p");
+        prompt.className = "python-prompt";
+        prompt.textContent = stage.prompt;
+        const options = document.createElement("div");
+        options.className = "python-options";
+        options.setAttribute("role", "group");
+        options.setAttribute("aria-label", `Pilihan jawaban tahap ${index + 1}`);
+        const status = document.createElement("span");
+        status.className = "python-stage-status";
+        status.setAttribute("aria-live", "polite");
+        const feedback = document.createElement("p");
+        feedback.className = "python-feedback";
+        feedback.setAttribute("aria-live", "polite");
+        feedback.textContent = "Pilih jawaban untuk mendapat umpan balik.";
+        stage.options.forEach((option, optionIndex) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "python-option";
+          button.textContent = option;
+          button.setAttribute("aria-pressed", "false");
+          button.dataset.correct = String(optionIndex === stage.answer);
+          button.addEventListener("click", () => {
+            options.querySelectorAll("button").forEach(item => {
+              item.setAttribute("aria-pressed", String(item === button));
+            });
+            const correct = optionIndex === stage.answer;
+            feedback.textContent = correct ? stage.correct : stage.retry;
+            if (correct) {
+              completedPythonStages.add(index + 1);
+              updatePythonProgress();
+              persistPythonProgress();
+            }
+          });
+          options.append(button);
+        });
+        card.append(prompt, options, feedback, status);
+        pythonStageList.append(card);
+      });
+
+      try {
+        const savedPythonProgress = JSON.parse(localStorage.getItem(pythonStorageKey) || "[]");
+        if (Array.isArray(savedPythonProgress)) {
+          savedPythonProgress.forEach(id => {
+            if (Number.isInteger(id) && id >= 1 && id <= pythonStages.length) completedPythonStages.add(id);
+          });
+        }
+      } catch {
+        pythonProgressNote.textContent = "Browser tidak dapat membaca progres tersimpan. Kamu tetap bisa belajar tanpa menyimpan; jawaban tidak dikirim ke server.";
+      }
+      updatePythonProgress();
+      document.querySelector("#reset-python-progress").addEventListener("click", () => {
+        completedPythonStages.clear();
+        try {
+          localStorage.removeItem(pythonStorageKey);
+          pythonProgressNote.textContent = "Progres Python di perangkat ini sudah dihapus.";
+        } catch {
+          pythonProgressNote.textContent = "Progres sesi ini dihapus, tetapi browser tidak dapat mengubah penyimpanan lokal.";
+        }
+        pythonStageList.querySelectorAll(".python-option").forEach(button => button.setAttribute("aria-pressed", "false"));
+        pythonStageList.querySelectorAll(".python-feedback").forEach(item => {
+          item.textContent = "Pilih jawaban untuk mendapat umpan balik.";
+        });
+        updatePythonProgress();
+      });
       const board = document.querySelector("#robot-board");
       const feedback = document.querySelector("#robot-feedback");
       const sequenceOutput = document.querySelector("#command-sequence");
@@ -1245,15 +1484,6 @@
           playFeedbackSound(true);
         }
       }
-
-      document.querySelectorAll("[data-audience]").forEach(button => {
-        button.addEventListener("click", () => {
-          document.querySelectorAll("[data-audience]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
-          document.querySelectorAll("[data-panel]").forEach(panel => {
-            panel.hidden = panel.dataset.panel !== button.dataset.audience;
-          });
-        });
-      });
 
       const menuToggle = document.querySelector(".menu-toggle");
       const mainNav = document.querySelector("#navigasi");
